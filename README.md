@@ -1,5 +1,5 @@
 Android Port of LÖVE, an awesome 2D game engine for Lua (http://love2d.org)  
-Copyright (c) 2006-2023 LOVE Development Team
+Copyright (c) 2006-2024 LOVE Development Team
 
 ![Build Status](https://github.com/love2d/love-android/workflows/build/badge.svg)
 
@@ -41,8 +41,8 @@ Quick Start:
 Before you start, install JDK 17 (not later not earlier). If you intend to build from Android Studio, skip this step as
 Android Studio bundles its own JDK 17.
 
-Install Android SDK with SDK API 34 (34.x.y) and Android NDK 25.2.9519653, set the environment variable
-`ANDROID_SDK_ROOT` to your Android SDK location and run:
+Install CMake version 3.21 or later in your system. Install Android SDK with SDK API 34 (34.x.y) and Android NDK
+26.1.10909125, set the environment variable `ANDROID_HOME` to your Android SDK as necessary then run.
 
 ```
 $ ./gradlew assembleNormalRecord
@@ -64,10 +64,10 @@ generate APK which you can install or `gradlew bundleEmbedNoRecordRelease` (or `
 AAB which you can upload to Play Store.
 
 Alternatively, you can install Android Studio **2022.3.1** or later. After opening it for the first time, open its SDK Manager
-and on the tab "SDK Tools", tick "Show Package Details" then select NDK (Side By Side) version 25.2.9519653. After that, open
+and on the tab "SDK Tools", tick "Show Package Details" then select NDK (Side By Side) version 26.1.10909125. After that, open
 the repository root.
 
-Notice: Previously, the embed + APKTool method is preferred, but recent announcements by Google render that method obsolete.
+Notice: Previously, the embed + APKTool method is preferred, but recent announcements by Google and recent changes in Android render that method obsolete.
 
 Bugs:
 -----
