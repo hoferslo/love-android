@@ -1,0 +1,17 @@
+Dkjson = nil
+Net = nil
+Serialize = nil
+Serpent = nil
+Object = nil
+Dt = 0
+Canvas=nil
+SettingsData = {}
+SettingsCanvas = {}
+SettingsScale={}
+SettingsDisplay = {}
+Images = {}
+ImagesData = {}
+Touches = {}
+Collections = {}
+PlayableArea = nil
+Font = love.graphics.newFont( "initialization-engine/libraries/font.ttf" )
