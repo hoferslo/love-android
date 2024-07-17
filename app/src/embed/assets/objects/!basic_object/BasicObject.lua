@@ -1,21 +1,21 @@
 BasicObject=Object:extend()
 
-function BasicObject:new (x, y, xhit, yhit)
+function BasicObject:new (x, y, xhit, yhit, color)
    self.x = x
    self.y = y
    self.xhit = xhit
    self.yhit = yhit
    self.angle=0
-   self.vel = 1
+   self.vel = 0.01
    --self.velMax = self.vel * 2
    self.velSubtract = 0.01
    self.forces = {
        main = {},
        knockback = {}
    }
-   self.collisionData = {}
+   self.collisionData = {"borders"}
    self.hasNormalCollision = true --if this is false, the object must override abnormalCollideOnY and abnormalCollideOnX
-
+    self.color = color or {1,1,1,1}
 end
 
 
@@ -27,8 +27,13 @@ function BasicObject:fun()
    self:subtractForces()
 end
 
-function BasicObject:draw()
+function BasicObject:isOutsideScreen()
+    return self.x + self.xhit < Screen.x or self.x > Screen.x + Screen.xhit or self.y + self.yhit < 0 or self.y > Screen.y + Screen.yhit
+end
 
+function BasicObject:draw()
+    love.graphics.setColor(self.color)
+    love.graphics.rectangle("fill", self.x, self.y, self.xhit, self.yhit)
 end
 
 

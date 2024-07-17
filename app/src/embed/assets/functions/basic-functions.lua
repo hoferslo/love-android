@@ -43,6 +43,7 @@ end
 
 function ForLoop(something)
     for i=#something,1,-1 do
+        print(something[i]:fun())
         if something[i]:fun() then
             table.remove(something, i)
         end

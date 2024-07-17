@@ -20,8 +20,23 @@ function love.update(dt)
         ForLoop(Collections["tiles"])
         ForLoop(Collections["buttons"])
         ForLoop(Collections["enemies"])
+
+        for i=#Collections["playerProj"],1,-1 do
+            if Collections["playerProj"][i]:fun() then
+                table.remove(Collections["playerProj"], i)
+            else
+                for c = #Collections["enemies"],1,-1  do
+                    if Collections["playerProj"][i]:hasCollided(Collections["enemies"][c]) then
+                        Collections["playerProj"][i]:hit(Collections["enemies"][c])
+                        table.remove(Collections["playerProj"], i)
+                        break
+                    end
+                end
+            end
+        end
+
         ForLoop(Collections["enemyProj"])
-        ForLoop(Collections["playerProj"])
+
         ForLoop(Collections["strings"])
         ForLoop(Collections["gores"])
         ForLoop(Collections["enemiesDead"])
@@ -33,7 +48,12 @@ function love.update(dt)
         if mc ~= null then
             ForLoop({mc})
         end
-        
+
+        if math.random(1, 120) == 1 then
+            local enemy = TestEnemy(math.random(Screen.x+Screen.xhit*0.1, Screen.x+Screen.xhit*0.1 + Screen.xhit*0.9), 1)
+
+            table.insert(Collections["enemies"], enemy)
+        end
     
     end
 end
