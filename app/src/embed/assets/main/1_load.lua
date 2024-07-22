@@ -5,7 +5,7 @@ function love.load()
     InitializeArrays()
     FillOutArrays()
     
-    mc.x, mc.y = Screen.x + Screen.xhit*0.5 - mc.yhit*0.5, Screen.y + Screen.yhit*0.7
+    mc.x, mc.y = Screen.x + Screen.xhit*0.5 - mc.yhit*0.5, Screen.y + Screen.yhit*0.5
     
     table.insert(Collections["hud"], (BasicJoystick(Screen.x + Screen.xhit*0.5,Screen.y + Screen.yhit*0.9, mc)))
     

@@ -12,7 +12,7 @@ function FillOutArrays()
         xhit = Screen.xhit*0.95,
         yhit = Screen.yhit
     }
-    MakeBoundaires() --remove this
+    --MakeBoundaires() --remove this
     --tileGeneratorInst = TileGenerator(PlayableArea["x"], PlayableArea["y"], PlayableArea["xhit"], PlayableArea["yhit"])
     
 

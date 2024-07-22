@@ -47,6 +47,7 @@ function love.update(dt)
         ForLoop(Collections["itemsOnGround"])
         if mc ~= null then
             ForLoop({mc})
+            followObject(mc)
         end
 
         if math.random(1, 120) == 1 then
@@ -54,6 +55,8 @@ function love.update(dt)
 
             table.insert(Collections["enemies"], enemy)
         end
+
+
     
     end
 end

@@ -6,3 +6,24 @@ function CheckCollision(rect1, rect2)
 end
 
 
+function followObject(object)
+    local ignore = {
+        ["hud"] = true,         -- Ignore the 'buttons' collection
+    }
+
+    local diffX, diffY = (Screen.xhit * 0.5 - object.x - object.xhit * 0.5), (Screen.yhit * 0.5 - object.y - object.yhit * 0.5)
+
+    -- Iterate over Collections
+    for name, collection in pairs(Collections) do
+        -- Check if the current collection's name should be ignored
+        if not ignore[name] then
+            for _, item in ipairs(collection) do
+                -- Update item coordinates
+                item.x = item.x + diffX
+                item.y = item.y + diffY
+            end
+        end
+    end
+end
+
+
