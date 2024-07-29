@@ -1,5 +1,4 @@
-
-BasicProjectile=BasicObject:extend()
+BasicProjectile = BasicObject:extend()
 
 function BasicProjectile:new (x, y, xhit, yhit, angle, vel, velSubtract)
     BasicProjectile.super.new(self, x, y, xhit, yhit)
@@ -12,13 +11,13 @@ function BasicProjectile:new (x, y, xhit, yhit, angle, vel, velSubtract)
     self.collisionData = {}
 end
 
-
 function BasicProjectile:fun()
     BasicProjectile.super.fun(self)
-     if self:isOutsideScreen() then return true end
+    if self:isOutsideScreen() then
+        return true
+    end
 end
 
-
 function BasicProjectile:hit(enemy)
-    enemy:hit(self)
+    return enemy:hit(self)
 end

@@ -1,5 +1,4 @@
-
-BasicEnemy=BasicObject:extend()
+BasicEnemy = BasicObject:extend()
 
 function BasicEnemy:new (x, y, xhit, yhit)
     BasicEnemy.super.new(self, x, y, xhit, yhit)
@@ -7,7 +6,6 @@ function BasicEnemy:new (x, y, xhit, yhit)
     self.velSubtract = 0.01
     self.hp = 1
 end
-
 
 function BasicEnemy:fun()
     BasicEnemy.super.fun(self)
@@ -18,4 +16,5 @@ end
 
 function BasicEnemy:hit(proj)
     self.hp = self.hp - proj.dmg
+    return true
 end
