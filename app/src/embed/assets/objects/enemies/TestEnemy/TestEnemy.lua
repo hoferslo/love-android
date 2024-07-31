@@ -7,8 +7,8 @@ function TestEnemy:new (x, y)
 end
 
 
-function TestEnemy:fun()
+function TestEnemy:update()
 
-    return TestEnemy.super.fun(self)
+    return TestEnemy.super.update(self)
 end
 

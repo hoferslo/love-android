@@ -7,8 +7,8 @@ function TestProjectile:new (x, y)
 end
 
 
-function TestProjectile:fun()
-    TestProjectile.super.fun(self)
+function TestProjectile:update()
+    TestProjectile.super.update(self)
 
 end
 

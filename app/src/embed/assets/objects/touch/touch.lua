@@ -1,4 +1,4 @@
-BasicTouch=BasicObject:extend()
+BasicTouch = BasicObject:extend()
 
 function BasicTouch:new (x, y, id)
     BasicTouch.super.new(self, x, y, 1, 1)
@@ -6,14 +6,14 @@ function BasicTouch:new (x, y, id)
     self.id = id
     self.xDraw = self.x
     self.yDraw = self.y
+    self.collisionGroups = { "hud" }
 end
 
-
-function BasicTouch:fun()
-    BasicTouch.super.fun(self)
+function BasicTouch:update()
+    BasicTouch.super.update(self)
 end
 
-function BasicTouch:CalcScale()
+function BasicTouch:calcScale()
     self.xDraw = self.x
     self.yDraw = self.y
     self.x = self.x / SettingsScale["x"]

@@ -1,28 +1,28 @@
+BasicMc = BasicObject:extend()
 
-BasicMc=BasicObject:extend()
-
-function BasicMc:new (x, y, xhit, yhit)
-    BasicMc.super.new(self, x, y, xhit, yhit)
-    self.vel = 0.07--0.1
-    self.velSubtract = 0.01
-    self.posOfPress = {x = 0, y = 0}
+function BasicMc:new (x, y, width, height)
+    BasicMc.super.new(self, x, y, width, height)
+    self.posOfPress = { x = 0, y = 0 }
     self.movementType = "joystick"  --joystick
     self.hp = 1
     self.shootCooldown = 0
     self.shootCooldownMax = 10
 end
 
-
-function BasicMc:fun()
-    BasicMc.super.fun(self)
+function BasicMc:update()
+    BasicMc.super.update(self)
     self.shootCooldown = self.shootCooldown - 1
     if self.shootCooldown <= 0 then
-        self:shoot()
+        for i = 1, 36 do
+            self:shoot(i * 10)
+        end
+
         self.shootCooldown = self.shootCooldownMax
     end
 end
 
-function BasicMc:shoot()
-    local proj = BasicProjectile(self.x + self.xhit*0.5,self.y + self.yhit*0.5,1,1, -90, 1)
-    table.insert(Collections["playerProj"], proj)
+function BasicMc:shoot(angle)
+    angle = angle or -90
+    local proj = BasicProjectile(self.x + self.width * 0.5, self.y + self.height * 0.5, 1, 1, angle)
+    LM:insertObject(proj, "playerProj")
 end

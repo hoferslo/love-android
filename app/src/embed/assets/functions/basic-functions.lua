@@ -43,8 +43,8 @@ end
 
 function ForLoop(something)
     for i=#something,1,-1 do
-        print(something[i]:fun())
-        if something[i]:fun() then
+        print(something[i]:update())
+        if something[i]:update() then
             table.remove(something, i)
         end
     end
@@ -53,7 +53,7 @@ end
 
 function ForLoopDict(something)
     for key, value in pairs(something) do
-        if value:fun() then
+        if value:update() then
             table.remove(something, key)
           end
     end
@@ -61,7 +61,7 @@ end
 
 function ForDraw(something)
     for i=1, #something, 1 do
-        if CheckCollision(Screen, something[i]) then
+        if checkCollision(Screen, something[i]) then
             something[i]:draw()
         end
     end
@@ -70,7 +70,7 @@ end
 
 function ForDrawDict(something)
     for key, value in pairs(something) do
-        if CheckCollision(Screen, value) then
+        if checkCollision(Screen, value) then
             value:draw()
         end
     end

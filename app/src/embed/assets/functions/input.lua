@@ -1,21 +1,18 @@
-
-
 function love.touchpressed(id, x, y, dx, dy, pressure)
     -- Store touch information in the table
     Touches[id] = BasicTouch(x, y, id, nil)
 
 end
 
-
 function love.touchmoved(id, x, y, dx, dy, pressure)
     -- Update touch information in the table
     if Touches[id] ~= nil then
         Touches[id].x = x
         Touches[id].y = y
+        Touches[id]:calcScale()
     end
-    Touches[id]:CalcScale()
-end
 
+end
 
 function love.touchreleased(id, x, y, dx, dy, pressure)
     -- Remove touch information from the table when a touch is released

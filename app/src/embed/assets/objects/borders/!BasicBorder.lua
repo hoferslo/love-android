@@ -1,12 +1,12 @@
 
 BasicBorder=BasicObject:extend()
 
-function BasicBorder:new (x, y, xhit, yhit, destroyOnTouch)
-    BasicBorder.super.new(self, x, y, xhit, yhit)
+function BasicBorder:new (x, y, width, height, destroyOnTouch)
+    BasicBorder.super.new(self, x, y, width, height)
     self.destroyOnTouch = destroyOnTouch
 
 end 
 
 function BasicBorder:draw()
-    --love.graphics.rectangle("line", self.x, self.y, self.xhit, self.yhit)
+    --love.graphics.rectangle("line", self.x, self.y, self.width, self.height)
 end

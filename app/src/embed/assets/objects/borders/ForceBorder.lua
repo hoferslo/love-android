@@ -2,21 +2,21 @@
 ForceBorderYDown=BasicBorder:extend()
 
 
-function ForceBorderYDown:new (x, y, xhit, yhit, destroyOnTouch)
-    ForceBorderYDown.super.new(self, x, y, xhit, yhit)
+function ForceBorderYDown:new (x, y, width, height, destroyOnTouch)
+    ForceBorderYDown.super.new(self, x, y, width, height)
     self.destroyOnTouch = destroyOnTouch
-    self.hasNormalCollision = false
+    self.hasStandardCollision = false
 
 end
 
-function ForceBorderYDown:abnormalCollideOnY(object)
+function ForceBorderYDown:customCollideY(object)
 
-    local forceMultiplier = (self.y+self.yhit / object.y) - 0.5
-    object:addForce(object.vel*forceMultiplier, 90, object.velSubtract*forceMultiplier)
+    local forceMultiplier = (self.y+self.height / object.y) - 0.5
+    --object:addForce(object.vel*forceMultiplier, 90, object.velSubtract*forceMultiplier)
 
 
 end
-function ForceBorderYDown:abnormalCollideOnX(object)
+function ForceBorderYDown:customCollideX(object)
 
 end
 -----------------------------------------------------
@@ -24,21 +24,21 @@ end
 ForceBorderYUp=BasicBorder:extend()
 
 
-function ForceBorderYUp:new (x, y, xhit, yhit, destroyOnTouch)
-    ForceBorderYUp.super.new(self, x, y, xhit, yhit)
+function ForceBorderYUp:new (x, y, width, height, destroyOnTouch)
+    ForceBorderYUp.super.new(self, x, y, width, height)
     self.destroyOnTouch = destroyOnTouch
-    self.hasNormalCollision = false
+    self.hasStandardCollision = false
 
 end
 
-function ForceBorderYUp:abnormalCollideOnY(object)
+function ForceBorderYUp:customCollideY(object)
 
-    local forceMultiplier = (self.y+self.yhit / object.y) - 0.5
-    object:addForce(object.vel*forceMultiplier, 270, object.velSubtract*forceMultiplier)
+    local forceMultiplier = (self.y+self.height / object.y) - 0.5
+    --object:addForce(object.vel*forceMultiplier, 270, object.velSubtract*forceMultiplier)
 
 
 end
-function ForceBorderYUp:abnormalCollideOnX(object)
+function ForceBorderYUp:customCollideX(object)
 
 end
 --------------------------------------------
@@ -46,39 +46,39 @@ end
 ForceBorderXRight=BasicBorder:extend()
 
 
-function ForceBorderXRight:new (x, y, xhit, yhit, destroyOnTouch)
-    ForceBorderXRight.super.new(self, x, y, xhit, yhit)
+function ForceBorderXRight:new (x, y, width, height, destroyOnTouch)
+    ForceBorderXRight.super.new(self, x, y, width, height)
     self.destroyOnTouch = destroyOnTouch
-    self.hasNormalCollision = false
+    self.hasStandardCollision = false
 
 end
 
-function ForceBorderXRight:abnormalCollideOnY(object)
+function ForceBorderXRight:customCollideY(object)
 
 end
 
-function ForceBorderXRight:abnormalCollideOnX(object)
-    local forceMultiplier = ((object.x + object.xhit - self.x) / (self.xhit*0.5)) + 0.5
+function ForceBorderXRight:customCollideX(object)
+    local forceMultiplier = ((object.x + object.width - self.x) / (self.width*0.5)) + 0.5
 
-    object:addForce(object.vel*forceMultiplier, 180, object.velSubtract*forceMultiplier)
+    --object:addForce(object.vel*forceMultiplier, 180, object.velSubtract*forceMultiplier)
 end
 
 --------------------------------------------------
 ForceBorderXLeft=BasicBorder:extend()
 
 
-function ForceBorderXLeft:new (x, y, xhit, yhit, destroyOnTouch)
-    ForceBorderXLeft.super.new(self, x, y, xhit, yhit)
+function ForceBorderXLeft:new (x, y, width, height, destroyOnTouch)
+    ForceBorderXLeft.super.new(self, x, y, width, height)
     self.destroyOnTouch = destroyOnTouch
-    self.hasNormalCollision = false
+    self.hasStandardCollision = false
 
 end
 
-function ForceBorderXLeft:abnormalCollideOnY(object)
+function ForceBorderXLeft:customCollideY(object)
 
 end
 
-function ForceBorderXLeft:abnormalCollideOnX(object)
-    local forceMultiplier = (self.x+self.xhit / object.x) - 0.5
-    object:addForce(object.vel*forceMultiplier, 0, object.velSubtract*forceMultiplier)
+function ForceBorderXLeft:customCollideX(object)
+    local forceMultiplier = (self.x+self.width / object.x) - 0.5
+    --object:addForce(object.vel*forceMultiplier, 0, object.velSubtract*forceMultiplier)
 end

@@ -1,168 +1,138 @@
-BasicObject=Object:extend()
+-- BasicObject Class Definition
+BasicObject = Object:extend()
 
-function BasicObject:new (x, y, xhit, yhit, color)
-   self.x = x
-   self.y = y
-   self.xhit = xhit
-   self.yhit = yhit
-   self.angle=0
-   self.vel = 0.01
-   --self.velMax = self.vel * 2
-   self.velSubtract = 0.01
-   self.forces = {
-       main = {},
-       knockback = {}
-   }
-   self.collisionData = {"borders"}
-   self.hasNormalCollision = true --if this is false, the object must override abnormalCollideOnY and abnormalCollideOnX
-    self.color = color or {1,1,1,1}
+CollisionGroups = {
+    "players",
+    "enemies",
+    "borders",
+    --tiles,
+    "enviormentCollide",
+    "itemsOnGround"
+}
+
+function BasicObject:new(x, y, width, height, color)
+    self.x = x
+    self.y = y
+    self.width = width
+    self.height = height
+    self.speed = 0.02
+    self.angle = 0  -- Movement angle in degrees
+    self.velocityX = 0  -- Velocity on X-axis
+    self.velocityY = 0  -- Velocity on Y-axis
+    self.friction = 0.98  -- Friction coefficient to decelerate the object
+    self.collisionGroups = nil --{ "borders" } --set value to this variable, if you want custom collision groups
+    self.hasStandardCollision = true  -- If false, the object must override customCollideX and customCollideY
+    self.color = color or { 1, 1, 1, 1 }
 end
 
+-- Movement Logic
 
-function BasicObject:fun()
-   self:calcForcesX()
-   self:calcCollisionX()
-   self:calcForcesY()
-   self:calcCollisionY()
-   self:subtractForces()
+function BasicObject:applyForce(angle, force)
+    -- Apply a force in the specified angle direction (in degrees)
+    angle = angle or self.angle
+    local angleRad = math.rad(angle)
+    force = force or self.speed
+    self.velocityX = self.velocityX + force * math.cos(angleRad)
+    self.velocityY = self.velocityY + force * math.sin(angleRad)
 end
+
+function BasicObject:applyFriction()
+    -- Apply friction to gradually reduce the object's velocity
+    self.velocityX = self.velocityX * self.friction
+    self.velocityY = self.velocityY * self.friction
+end
+
+function BasicObject:updatePosition()
+    -- Update the object's position based on the current velocity
+    self.x = self.x + self.velocityX
+    self:checkCollisionX()
+    self.y = self.y + self.velocityY
+    self:checkCollisionY()
+    self:applyFriction()
+end
+
+function BasicObject:update()
+    -- Called every frame to update the object's state
+    self:updatePosition()
+
+end
+
+function BasicObject:calcAngle(i)
+    return math.deg(math.atan2(i.y - i.height * 0.5 - self.y - self.height * 0.5, i.x - i.width * 0.5 - self.x - self.width * 0.5))
+end
+
+-- Collision Logic
 
 function BasicObject:isOutsideScreen()
-    return self.x + self.xhit < Screen.x or self.x > Screen.x + Screen.xhit or self.y + self.yhit < 0 or self.y > Screen.y + Screen.yhit
+    -- Check if the object is outside the screen boundaries
+    return self.x + self.width < 0 or self.x > Screen.width or self.y + self.height < 0 or self.y > Screen.height
+end
+
+function BasicObject:isOutsideBounds()
+    -- Check if the object is outside the screen boundaries
+    return self.x + self.width < -Screen.width or self.x > Screen.width * 2 or self.y + self.height < -Screen.height or self.y > Screen.height * 2
 end
 
 function BasicObject:draw()
+    -- Draw the object
     love.graphics.setColor(self.color)
-    love.graphics.rectangle("fill", self.x, self.y, self.xhit, self.yhit)
+    love.graphics.rectangle("fill", self.x, self.y, self.width, self.height)
 end
 
+function BasicObject:handleCollisionX(obstacle)
+    -- Handle collision response on X-axis
+    if self:checkCollision(obstacle) then
+        if self ~= obstacle then
+            if self.x + self.width / 2 < obstacle.x + obstacle.width / 2 then
+                self.x = obstacle.x - self.width
+            else
+                self.x = obstacle.x + obstacle.width
+            end
+            self.velocityX = self.velocityX * 0.5
 
-function BasicObject:addForce(vel, angle, velSubtract, id) --id = self = 1, knockback = 2
-   if id==nil then
-       id = "main"
-   end
-   if vel==nil then
-       vel = self.vel
-   end
-   if velSubtract == nil then
-       velSubtract = self.velSubtract
-   end
-   if angle == nil then
-       angle = self.angle
-   end
-
-   table.insert(self.forces[id], {vel = vel, angle = angle, velSubtract = velSubtract})
-   
+        end
+    end
 end
 
-function BasicObject:hasCollided(obstacle)
-   if self.x < obstacle.x + obstacle.xhit and
-      self.x + self.xhit > obstacle.x and
-      self.y < obstacle.y + obstacle.yhit and
-      self.y + self.yhit > obstacle.y then
-      return true
-   end
-   return false
+function BasicObject:handleCollisionY(obstacle)
+    -- Handle collision response on Y-axis
+    if self:checkCollision(obstacle) then
+        if self ~= obstacle then
+            if self.y + self.height / 2 < obstacle.y + obstacle.height / 2 then
+                self.y = obstacle.y - self.height
+            else
+                self.y = obstacle.y + obstacle.height
+            end
+            self.velocityY = self.velocityY * 0.5
+        end
+    end
 end
 
-
-function BasicObject:CollideOnX(obstacle)
-   if obstacle.hasNormalCollision then
-      if self.x+self.xhit*0.5 < obstacle.x+obstacle.xhit*0.5 then
-         self.x = obstacle.x - self.xhit
-      else
-         self.x = obstacle.x + obstacle.xhit
-      end
-   else
-      obstacle:abnormalCollideOnX(self)
-   end
+-- Function to check if two objects have collided
+function BasicObject:checkCollision(obj2)
+    return self.x < obj2.x + obj2.width and
+            self.x + self.width > obj2.x and
+            self.y < obj2.y + obj2.height and
+            self.y + self.height > obj2.y
 end
 
-function BasicObject:calcCollisionX()
-   for key, value in pairs(self.collisionData) do
-       for _, obstacle in pairs(Collections[value]) do
-           if self:hasCollided(obstacle) then
-               self:CollideOnX(obstacle)
-           end
-       end
-   end
-   return nil
+-- General Collision Check Functions
+function BasicObject:checkCollisionX()
+    -- Check and handle collisions on the X-axis
+    local collisionGroups = self.collisionGroups or CollisionGroups
+    for _, group in pairs(collisionGroups) do
+        for _, obstacle in pairs(LM:getCollection(group)) do
+            self:handleCollisionX(obstacle)
+        end
+    end
 end
 
-function BasicObject:calcCollisionY()
-   for key, value in pairs(self.collisionData) do
-       for _, obstacle in pairs(Collections[value]) do
-           if self:hasCollided(obstacle) then
-               self:CollideOnY(obstacle)
-           end
-       end
-   end
-   return nil
+function BasicObject:checkCollisionY()
+    -- Check and handle collisions on the Y-axis
+    local collisionGroups = self.collisionGroups or CollisionGroups
+    for _, group in pairs(collisionGroups) do
+        for _, obstacle in pairs(LM:getCollection(group)) do
+            self:handleCollisionY(obstacle)
+        end
+    end
 end
-
-function BasicObject:CollideOnY(obstacle)
-   if obstacle.hasNormalCollision then
-      if self.y+self.yhit*0.5 < obstacle.y+obstacle.yhit*0.5 then
-         self.y = obstacle.y - self.yhit
-      else
-         self.y = obstacle.y + obstacle.yhit
-      end
-   else
-      obstacle:abnormalCollideOnY(self)
-   end
-end
-
-function BasicObject:abnormalCollideOnY(object)
-   if self.y+self.yhit*0.5 < object.y+object.yhit*0.5 then
-      self.y = object.y - self.yhit
-   else
-      self.y = object.y + object.yhit
-   end
-end
-function BasicObject:abnormalCollideOnX(object)
-   if self.x+self.xhit*0.5 < object.x+object.xhit*0.5 then
-      self.x = object.x - self.xhit
-   else
-      self.x = object.x + object.xhit
-   end
-end
-
-function BasicObject:calcForcesX()
-   for key, value in pairs(self.forces) do
-       for i = #self.forces[key], 1, -1 do
-           self.x = self.x + self.forces[key][i]["vel"] * math.cos(math.rad(self.forces[key][i]["angle"]))
-       end
-   end
-end
-
-function BasicObject:calcForcesY()
-   for key, value in pairs(self.forces) do
-       for i = #self.forces[key], 1, -1 do
-           self.y = self.y + self.forces[key][i]["vel"] * math.sin(math.rad(self.forces[key][i]["angle"]))
-       end
-   end
-end
-
-function BasicObject:subtractForces()
-   for key, value in pairs(self.forces) do
-      for i = #self.forces[key], 1, -1 do
-         self.forces[key][i]["vel"] = self.forces[key][i]["vel"] - self.forces[key][i]["velSubtract"]
-         if self.forces[key][i]["vel"] < self.forces[key][i]["velSubtract"] then
-             table.remove(self.forces[key], i)
-         end
-      end
-  end
-end
-
-
-function BasicObject:AddMovement(vel, angle)
-   if angle==nil then
-       angle = math.random(0, 360)
-   end
-   self:addForce(vel, angle)
-end
-
-function BasicObject:CalcAngle(i)
-   return math.deg(math.atan2(i.y - i.yhit*0.5 - self.y - self.yhit*0.5 , i.x - i.xhit*0.5 - self.x - self.xhit*0.5 ))
-end
-

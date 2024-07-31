@@ -6,18 +6,18 @@ BasicTile=BasicObjectImage:extend()
 
 function BasicTile:new (x, y)
     BasicTile.super.new(self, x, y, "BasicTile")
-    self.collisionData = {}
+    self.collisionGroups = {}
     self.vel = 0.1
     self.angle = 0
 end
 
 
-function BasicTile:fun()
-    BasicTile.super.fun(self)
-    if self.y > Screen.y + Screen.yhit then
+function BasicTile:update()
+    BasicTile.super.update(self)
+    if self.y > Screen.y + Screen.height then
         return true
     end
-    self:addForce(nil, 90)
+    --self:addForce(nil, 90)
 end
 
 function BasicTile:draw()
