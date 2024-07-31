@@ -64,7 +64,5 @@ function love.update(dt)
 
             table.insert(Collections["enemies"], enemy)
         end
-
-
     end
 end
