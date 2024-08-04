@@ -9,6 +9,7 @@ function BasicProjectile:new (x, y, width, height, angle, speed, friction)
     self.dmg = 1
     self.collisionGroups = { }
     self:applyForce(nil)
+    self.collection = "enemyProj"
 
 end
 

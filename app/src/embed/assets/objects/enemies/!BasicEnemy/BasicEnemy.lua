@@ -5,6 +5,7 @@ function BasicEnemy:new (x, y, width, height)
     self.vel = 0.02
     self.velSubtract = 0.01
     self.hp = 1
+    self.collection = "enemies"
 end
 
 function BasicEnemy:update()

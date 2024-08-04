@@ -2,7 +2,7 @@ LayerManager = Object:extend()
 
 function LayerManager:new()
     self.layers = {}
-    self.homeLayer = Layer() --unnecessary, but maybe useful
+    self.homeLayer = MainMenuLayer() --unnecessary, but maybe useful
     table.insert(self.layers, self.homeLayer)
 end
 
@@ -28,7 +28,7 @@ end
 
 function LayerManager:insertObject(object, collection) --maybe make automatic insertions, have each object have a string variable, collection, that is the same string as the index in BasicLayer class in collections
     collection = collection or object.collection
-    table.insert(self.layers[#self.layers].collections[collection], object)
+    self.layers[#self.layers]:insertObject(object, collection)
 end
 
 function LayerManager:getCollection(collection)

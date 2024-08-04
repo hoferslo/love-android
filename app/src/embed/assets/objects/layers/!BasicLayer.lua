@@ -24,6 +24,13 @@ function Layer:new()
     }
 
     self.mc = nil
+
+    self:load()
+end
+
+function Layer:insertObject(object, collection) --maybe make automatic insertions, have each object have a string variable, collection, that is the same string as the index in BasicLayer class in collections
+    collection = collection or object.collection
+    table.insert(self.collections[collection], object)
 end
 
 function Layer:setMC(character)
@@ -32,6 +39,10 @@ end
 
 function Layer:getMC()
     return self.mc
+end
+
+function Layer:load()
+
 end
 
 function Layer:update()

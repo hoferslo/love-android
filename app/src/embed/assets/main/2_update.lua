@@ -19,10 +19,6 @@ function love.update(dt)
         --tileGeneratorInst:update()
         LM:update()
 
-        if math.random(1, 120) == 1 then
-            local enemy = TestEnemy(math.random(Screen.x + Screen.width * 0.1, Screen.x + Screen.width * 0.1 + Screen.width * 0.9), 1)
-
-            LM:insertObject(enemy, "enemies")
-        end
+        
     end
 end

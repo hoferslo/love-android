@@ -6,6 +6,7 @@ function BasicHud:new (x, y, image)
     self.y = self.y - self.height * 0.5
     self.angleToTouch = 0
     self.collisionGroups = { }
+    self.collection = "hud"
 end
 
 function BasicHud:update()

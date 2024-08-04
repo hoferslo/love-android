@@ -9,6 +9,7 @@ function BasicTile:new (x, y)
     self.collisionGroups = {}
     self.vel = 0.1
     self.angle = 0
+    self.collection = "tiles"
 end
 
 

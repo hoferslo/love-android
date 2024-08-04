@@ -7,6 +7,7 @@ function BasicMc:new (x, y, width, height)
     self.hp = 1
     self.shootCooldown = 0
     self.shootCooldownMax = 10
+    self.collection = "players"
 end
 
 function BasicMc:update()
