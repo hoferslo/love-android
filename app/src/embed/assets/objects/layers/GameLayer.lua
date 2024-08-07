@@ -12,7 +12,7 @@ function GameLayer:load()
 
     self.mc.x, self.mc.y = Screen.x + Screen.width * 0.5 - self.mc.height * 0.5, Screen.y + Screen.height * 0.5
 
-    local waste = BasicJoystick(Screen.x, Screen.y + Screen.height, self.mc)
+    local waste = ArrowJoystick(Screen.x, Screen.y + Screen.height, self.mc)
     waste.x = waste.x + waste.width
     waste.y = waste.y - waste.height
     self:insertObject(waste, "hud")
@@ -22,7 +22,8 @@ function GameLayer:load()
     waste.y = waste.y - waste.height
     self:insertObject(waste, "hud")
 
-    
+    self:insertObject(ButtonPause(16, 16))
+
 end
 
 function GameLayer:update()

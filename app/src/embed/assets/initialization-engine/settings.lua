@@ -4,7 +4,7 @@ jit.on()
 function Reset_settings()
 
     SettingsData = {
-        dpi = 3,
+        --dpi = 3,
         saveSettings = 0, -- Set to 1 if settings were changed
         vSync = 1,
         useParticles = 1,
@@ -13,14 +13,16 @@ function Reset_settings()
         useOptimizedParticles = 1,
         usePerformanceInformation = 1,
         displayOrientation = 0, -- 0 = landscape, 1 = portrait
-        itemsOnGroundLimitMax = 60
+        itemsOnGroundLimitMax = 60,
+        blendMode = "alpha",
+        blendModeAlpha = "premultiplied"
     }
 end
-
+Reset_settings()
 SettingsCanvas = {
     format = "normal", -- The pixel format of the canvas ("normal" or "hdr")
     msaa = 0, -- The number of antialiasing samples
-    dpiscale = 1, -- The DPI scale factor of the canvas
+    --dpiscale = 3, -- The DPI scale factor of the canvas
     --mipmaps = true,     -- Whether to generate mipmaps for the canvas
 }
 

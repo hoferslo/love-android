@@ -7,11 +7,12 @@ function BasicHud:new (x, y, image)
     self.angleToTouch = 0
     self.collisionGroups = { }
     self.collection = "hud"
+    self.isBeingPressed = false
 end
 
 function BasicHud:update()
     BasicHud.super.update(self)
-
+    self.isBeingPressed = false
     for _, touch in pairs(Touches) do
         if touch.bind == self then
             self.angleToTouch = self:calcAngle(touch)
@@ -25,7 +26,7 @@ function BasicHud:update()
 end
 
 function BasicHud:Touch(x, y)
-
+    self.isBeingPressed = true
 end
 
 function BasicHud:OnLetGo()

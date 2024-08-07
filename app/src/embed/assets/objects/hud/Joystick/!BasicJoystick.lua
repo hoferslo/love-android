@@ -32,6 +32,7 @@ function BasicJoystick:SetJoystick(x, y)
 end
 
 function BasicJoystick:Touch(x, y)
+    BasicJoystick.super.Touch(self)
     self:SetJoystick(x, y)
     
     self.controlledObject:applyForce(self.angleToTouch, nil)

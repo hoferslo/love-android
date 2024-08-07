@@ -13,34 +13,6 @@ function round(x)
 end
 
 
-
-function Get_images(name, path)
-    local waste_table = ImagesData[name]
-    ImagesData[name] = {}
-    for index, value in ipairs(waste_table) do
-        ImagesData[name][index] = love.image.newImageData(path..value)
-    end
-    Images[name]={}
-    Images[name.."_silhouette"]={}
-    ImagesData[name.."_silhouette"]={}
-    for c, i in pairs(ImagesData[name]) do
-        Images[name][c] = love.graphics.newImage(i)
-        local imageData = love.image.newImageData(i:getWidth(), i:getHeight())
-        for x = 0, i:getWidth() - 1 do
-            for y = 0, i:getHeight() - 1 do
-                local r, g, b, a = i:getPixel(x, y)
-                if a~=0 then
-                imageData:setPixel(x, y, 1, 1, 1, a)
-                end
-            end
-        end
-        table.insert(ImagesData[name.."_silhouette"], imageData)
-        table.insert(Images[name.."_silhouette"], love.graphics.newImage(imageData))
-    end
-end
-
-
-
 function ForLoop(something)
     for i=#something,1,-1 do
         if something[i]:update() then

@@ -7,7 +7,7 @@ end
 
 function MainMenuLayer:load()
     
-    self:insertObject(Button(Screen.x + Screen.width*0.5, Screen.y + Screen.height*0.5), "hud")
+    self:insertObject(ButtonPlay(Screen.x + Screen.width*0.5, Screen.y + Screen.height*0.5))
 end
 
 function MainMenuLayer:update()

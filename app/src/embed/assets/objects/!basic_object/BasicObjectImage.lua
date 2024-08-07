@@ -17,6 +17,7 @@ function BasicObjectImage:new (x, y, image)
 end
 
 function BasicObjectImage:draw()
+    love.graphics.setColor(self.color)
     love.graphics.draw(Images[self.image][self.image_index], self.x + self.width * 0.5, self.y + self.height * 0.5, math.rad(self.angle), SettingsScale["x_images"], SettingsScale["y_images"], self.widthHalf / SettingsScale["x_images"], self.heightHalf / SettingsScale["y_images"])
 end
 
@@ -24,3 +25,11 @@ function BasicObjectImage:update()
     BasicObjectImage.super.update(self)
 
 end
+
+
+function BasicObjectImage:drawSilhouette(color) 
+    love.graphics.setBlendMode("add")
+    love.graphics.setColor(color)
+    love.graphics.draw(Images[self.image_silhouette][self.image_index], self.x + self.width * 0.5, self.y + self.height * 0.5, math.rad(self.angle), SettingsScale["x_images"], SettingsScale["y_images"], self.widthHalf / SettingsScale["x_images"], self.heightHalf / SettingsScale["y_images"])
+    love.graphics.setBlendMode(SettingsData.blendMode, SettingsData.blendModeAlpha)
+  end
