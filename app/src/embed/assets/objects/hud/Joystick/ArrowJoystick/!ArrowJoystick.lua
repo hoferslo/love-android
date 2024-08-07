@@ -49,12 +49,12 @@ function ArrowJoystick:draw()
     love.graphics.draw(Images[self.image][1], self.x + self.width*0.5, self.y + self.height*0.5, 0, SettingsScale["x_images"], SettingsScale["y_images"], self.widthHalf/SettingsScale["x_images"], self.heightHalf/SettingsScale["y_images"])
     
     for i = 0, 360, 45 do
-        love.graphics.draw(Images[self.image][3], self.x + self.width*0.5, self.y + self.height*0.5, math.rad(i), SettingsScale["x_images"], SettingsScale["y_images"], self.widthHalf/SettingsScale["x_images"], self.heightHalf/SettingsScale["y_images"])
+        love.graphics.draw(Images[self.image][3], self.x + self.width*0.5, self.y + self.height*0.5, math.rad(i), SettingsScale["x_images"], SettingsScale["y_images"], self.widthHalf/SettingsScale["x_images"]*0.85, self.heightHalf/SettingsScale["y_images"]*0.85)
     end
     
     if self.isBeingPressed then
         love.graphics.setColor(0.7, 0.6, 0.1, 0.5)
-        love.graphics.draw(Images[self.image_silhouette][3], self.x + self.width*0.5, self.y + self.height*0.5, math.rad(self.simplifiedAngle + 135), SettingsScale["x_images"], SettingsScale["y_images"], self.widthHalf/SettingsScale["x_images"], self.heightHalf/SettingsScale["y_images"])
+        love.graphics.draw(Images[self.image_silhouette][3], self.x + self.width*0.5, self.y + self.height*0.5, math.rad(self.simplifiedAngle + 135), SettingsScale["x_images"], SettingsScale["y_images"], self.widthHalf/SettingsScale["x_images"]*0.85, self.heightHalf/SettingsScale["y_images"]*0.85)
     end
 end
 
