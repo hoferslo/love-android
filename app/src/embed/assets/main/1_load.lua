@@ -1,10 +1,11 @@
 function love.load()
+
     SettingsInfo["OS"] = love.system.getOS()
 
     if SettingsInfo["OS"] == "Windows" then
-        love.window.updateMode(love.graphics.getWidth(), love.graphics.getHeight(), { fullscreen = false, vsync = SettingsDisplay["vsync"] })
+        love.window.updateMode(0, 0, { fullscreen = false, vsync = SettingsDisplay["vsync"] })
     else
-        love.window.updateMode(love.graphics.getWidth(), love.graphics.getHeight(), { fullscreen = SettingsDisplay["fullscreen"], vsync = SettingsDisplay["vsync"] })--, usedpiscale=false
+        love.window.updateMode(0, 0, { fullscreen = SettingsDisplay["fullscreen"], vsync = SettingsDisplay["vsync"] })--, usedpiscale=false
     end
     love.graphics.setBlendMode(SettingsData.blendMode, SettingsData.blendModeAlpha)
     Canvas = love.graphics.newCanvas(love.graphics.getWidth() / SettingsScale["x"], love.graphics.getHeight() / SettingsScale["y"], SettingsCanvas)
@@ -14,4 +15,7 @@ function love.load()
     HasSomeTimePassedCounter = 0
 
     LM = LayerManager()
+    for _, layer in ipairs(LM.layers) do
+        layer:load()
+    end
 end

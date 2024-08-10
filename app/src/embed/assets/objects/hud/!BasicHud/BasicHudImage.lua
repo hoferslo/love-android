@@ -1,7 +1,7 @@
-BasicHud = BasicObject:extend()
+BasicHudImage = BasicObjectImage:extend()
 
-function BasicHud:new (x, y, width, height)
-    BasicHud.super.new(self, x, y, width, height)
+function BasicHudImage:new (x, y, image)
+    BasicHudImage.super.new(self, x, y, image)
     self.angleToTouch = 0
     self.collisionGroups = { }
     self.collection = "hud"
@@ -11,14 +11,11 @@ function BasicHud:new (x, y, width, height)
     self.lastTouchY = 0
 end
 
-function BasicHud:update()
-    BasicHud.super.update(self)
+function BasicHudImage:update()
+    BasicHudImage.super.update(self)
     self.isBeingPressed = false
-    table.insert(DebugStuff, "#touches: " .. #Touches)
-    printl(Touches)
     if self.active then
         for _, touch in pairs(Touches) do
-
             if touch.bind == self then
                 self.angleToTouch = self:calcAngle(touch)
                 self:Touch(touch.x, touch.y)
@@ -31,13 +28,13 @@ function BasicHud:update()
     end
 end
 
-function BasicHud:Touch(x, y)
+function BasicHudImage:Touch(x, y)
     self.isBeingPressed = true
     self.lastTouchX = x
     self.lastTouchY = y
 end
 
-function BasicHud:OnLetGo()
+function BasicHudImage:OnLetGo()
 
 end
 

@@ -26,7 +26,7 @@ function ForLoopDict(something)
     for key, value in pairs(something) do
         if value:update() then
             table.remove(something, key)
-          end
+        end
     end
 end
 

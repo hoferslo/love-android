@@ -1,5 +1,5 @@
 
-Button = BasicHud:extend()
+Button = BasicHudImage:extend()
 
 function Button:new (x, y, image)
     Button.super.new(self, x, y, image)
@@ -8,12 +8,14 @@ function Button:new (x, y, image)
 end
 
 function Button:update()
+    if self.isBeingPressed == false and self.timeHeld > 0 then
+        self.timeHeld = self.timeHeld - 1
+    end
     Button.super.update(self)
-
 end
 
 function Button:Touch(x, y)
-    Button.super.Touch(self)
+    Button.super.Touch(self, x, y)
     self.timeHeld = self.timeHeld + 1
 end
 

@@ -3,7 +3,7 @@ ImagesData[className] = {"1.png", "2.png"}
 local path = "objects/hud/Joystick/images/"
 Get_images(className, path)
 
-BasicJoystick=BasicHud:extend()
+BasicJoystick=BasicHudImage:extend()
 
 function BasicJoystick:new (x, y, controlledObject)
     BasicJoystick.super.new(self, x, y, className)
@@ -32,7 +32,7 @@ function BasicJoystick:SetJoystick(x, y)
 end
 
 function BasicJoystick:Touch(x, y)
-    BasicJoystick.super.Touch(self)
+    BasicJoystick.super.Touch(self, x, y)
     self:SetJoystick(x, y)
     
     self.controlledObject:applyForce(self.angleToTouch, nil)

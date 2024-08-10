@@ -3,7 +3,7 @@ ImagesData[className] = {"1.png", "2.png", "3.png"}
 local path = "objects/hud/Joystick/ArrowJoystick/images/"
 Get_images(className, path)
 
-ArrowJoystick=BasicHud:extend()
+ArrowJoystick=BasicHudImage:extend()
 
 function ArrowJoystick:new (x, y, controlledObject)
     ArrowJoystick.super.new(self, x, y, className)
@@ -30,7 +30,7 @@ function ArrowJoystick:SetJoystick(x, y)
 end
 
 function ArrowJoystick:Touch(x, y)
-    ArrowJoystick.super.Touch(self)
+    ArrowJoystick.super.Touch(self, x, y)
     self.simplifiedAngle = self:simplifyAngle(self.angleToTouch)
     
     self.controlledObject:applyForce(self.simplifiedAngle, nil)

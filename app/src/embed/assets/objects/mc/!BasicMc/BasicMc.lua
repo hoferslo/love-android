@@ -8,6 +8,8 @@ function BasicMc:new (x, y, width, height)
     self.shootCooldown = 0
     self.shootCooldownMax = 10
     self.collection = "players"
+    self.speed = 0.2
+    self.friction = 0.9
 end
 
 function BasicMc:update()

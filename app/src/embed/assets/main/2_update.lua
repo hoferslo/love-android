@@ -1,4 +1,5 @@
 function love.update(dt)
+    DebugStuff = {}
     Dt = dt
     SettingsDt["game_dt_since_last_tick"] = SettingsDt["game_dt_since_last_tick"] + dt
     if love.mouse.isDown(1) then
@@ -13,12 +14,13 @@ function love.update(dt)
             HasSomeTimePassedCounter = 0
             HasSomeTimePassed = true
         end
+        table.insert(DebugStuff, "touches: " .. #love.touch.getTouches())
         SettingsDt["game_dt_since_last_tick"] = 0
         SettingsDt["do_draw"] = 1
 
         --tileGeneratorInst:update()
         LM:update()
 
-        
+
     end
 end

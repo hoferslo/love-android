@@ -9,7 +9,7 @@ function love.draw()
 
     LM:draw()
 
-    
+
     -- Draw your content on the canvas
 
     -- Reset the rendering target to the screen
@@ -25,11 +25,17 @@ function love.draw()
         SettingsInfo["FPS"] = SettingsDt["game_tick"] / (Dt * SettingsDt["game_tick"])
         HasSomeTimePassed = false
     end
-    love.graphics.setColor(0,0,0,1)
+
+    love.graphics.setColor(0, 0, 0, 1)
     love.graphics.rectangle("line", 0, 0, love.graphics.getWidth(), love.graphics.getHeight())
-    love.graphics.setColor(1,1,1,1)
+    love.graphics.setColor(1, 1, 1, 1)
     --love.graphics.print(#LM:getCollection("playerProj"), love.graphics.getWidth() - 100, 20)
     love.graphics.setBlendMode(SettingsData.blendMode)
     love.graphics.print(string.format("%.2f", SettingsInfo["FPS"]), love.graphics.getWidth() - 50, 5)
+
+    for _, debugString in pairs(DebugStuff) do
+        love.graphics.print(debugString, love.graphics.getWidth() * 0.75, 10 + 10 * _)
+    end
+    
     love.graphics.setBlendMode(SettingsData.blendMode, SettingsData.blendModeAlpha)
 end

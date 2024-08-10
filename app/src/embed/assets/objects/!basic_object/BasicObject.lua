@@ -76,7 +76,7 @@ end
 function BasicObject:draw()
     -- Draw the object
     love.graphics.setColor(self.color)
-    love.graphics.rectangle("fill", self.x, self.y, self.width, self.height)
+    love.graphics.rectangle("line", self.x, self.y, self.width, self.height)
 end
 
 function BasicObject:handleCollisionX(obstacle)

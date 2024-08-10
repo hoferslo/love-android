@@ -2,9 +2,11 @@ LayerManager = Object:extend()
 
 function LayerManager:new()
     self.layers = {}
-    self.homeLayer = MainMenuLayer() --unnecessary, but maybe useful
+    self.homeLayer = CampaignSelectionLayer() 
     table.insert(self.layers, self.homeLayer)
 end
+
+
 
 function LayerManager:addLayer(layer)
     table.insert(self.layers, layer)
@@ -26,10 +28,17 @@ function LayerManager:update()
     end
 end
 
-function LayerManager:insertObject(object, collection) --maybe make automatic insertions, have each object have a string variable, collection, that is the same string as the index in BasicLayer class in collections
+function LayerManager:insertObject(object, collection) 
     collection = collection or object.collection
     self.layers[#self.layers]:insertObject(object, collection)
 end
+
+function LayerManager:insertObjects(objects)
+    for _, object in ipairs(objects) do
+        self.layers[#self.layers]:insertObject(object)
+    end
+end
+
 
 function LayerManager:getCollection(collection)
     return self.layers[#self.layers].collections[collection]

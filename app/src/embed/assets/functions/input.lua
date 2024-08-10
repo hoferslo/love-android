@@ -11,6 +11,7 @@ function love.touchmoved(id, x, y, dx, dy, pressure)
         Touches[id].y = y
         Touches[id]:calcScale()
     end
+    table.insert(DebugStuff, "touch: " .. x)
 
 end
 

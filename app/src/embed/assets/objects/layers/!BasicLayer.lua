@@ -25,7 +25,9 @@ function Layer:new()
 
     self.mc = nil
 
-    self:load()
+    if LM ~= nil then 
+        self:load()
+    end
 end
 
 function Layer:insertObject(object, collection) --maybe make automatic insertions, have each object have a string variable, collection, that is the same string as the index in BasicLayer class in collections

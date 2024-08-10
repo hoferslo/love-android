@@ -22,7 +22,10 @@ function GameLayer:load()
     waste.y = waste.y - waste.height
     self:insertObject(waste, "hud")
 
-    self:insertObject(ButtonPause(16, 16))
+    local waste = ButtonPause(0, 0)
+    waste.x = Screen.width*0.01
+    waste.y = Screen.height*0.01
+    self:insertObject(waste)
 
 end
 
