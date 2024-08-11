@@ -14,17 +14,15 @@ end
 function BasicHud:update()
     BasicHud.super.update(self)
     self.isBeingPressed = false
-    table.insert(DebugStuff, "#touches: " .. #Touches)
-    printl(Touches)
+
+    
     if self.active then
         for _, touch in pairs(Touches) do
-
             if touch.bind == self then
                 self.angleToTouch = self:calcAngle(touch)
                 self:Touch(touch.x, touch.y)
             elseif touch.bind == nil and self:checkCollision(touch) then
                 touch.bind = self
-
                 break
             end
         end

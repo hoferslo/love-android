@@ -1,5 +1,5 @@
 function love.load()
-
+    DM = DebugManager()
     SettingsInfo["OS"] = love.system.getOS()
 
     if SettingsInfo["OS"] == "Windows" then

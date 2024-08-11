@@ -8,6 +8,20 @@ function printl(list)
     print(var)
 end
 
+function convertTable(list)
+    local var = "{"
+    for c, i in pairs(list) do
+        var = var .. tostring(i) .. ","
+    end
+    var = var:sub(1, -2) -- Remove the last character (comma)
+    var = var .. "}"
+    return var
+end
+
+function convertVariableToText(s)
+    if type(s) == "table" then return convertTable(s) else return tostring(s) end
+end
+
 function round(x)
     return math.floor(x+0.5)
 end

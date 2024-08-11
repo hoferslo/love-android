@@ -33,9 +33,7 @@ function love.draw()
     love.graphics.setBlendMode(SettingsData.blendMode)
     love.graphics.print(string.format("%.2f", SettingsInfo["FPS"]), love.graphics.getWidth() - 50, 5)
 
-    for _, debugString in pairs(DebugStuff) do
-        love.graphics.print(debugString, love.graphics.getWidth() * 0.75, 10 + 10 * _)
-    end
+    DM:draw()
     
     love.graphics.setBlendMode(SettingsData.blendMode, SettingsData.blendModeAlpha)
 end

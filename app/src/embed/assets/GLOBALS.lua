@@ -15,4 +15,3 @@ Touches = {}
 Collections = {}
 PlayableArea = nil
 Font = love.graphics.newFont( "initialization-engine/libraries/font.ttf" )
-DebugStuff = {}

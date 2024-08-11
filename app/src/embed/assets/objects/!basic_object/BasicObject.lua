@@ -57,6 +57,11 @@ function BasicObject:update()
 
 end
 
+function BasicObject:center()
+    self.x = self.x - self.width * 0.5
+    self.y = self.y - self.height * 0.5
+end
+
 function BasicObject:calcAngle(i)
     return math.deg(math.atan2(i.y - i.height * 0.5 - self.y - self.height * 0.5, i.x - i.width * 0.5 - self.x - self.width * 0.5))
 end

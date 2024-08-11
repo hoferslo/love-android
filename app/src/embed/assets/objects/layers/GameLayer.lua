@@ -13,13 +13,13 @@ function GameLayer:load()
     self.mc.x, self.mc.y = Screen.x + Screen.width * 0.5 - self.mc.height * 0.5, Screen.y + Screen.height * 0.5
 
     local waste = ArrowJoystick(Screen.x, Screen.y + Screen.height, self.mc)
-    waste.x = waste.x + waste.width
-    waste.y = waste.y - waste.height
+    waste.x = waste.x + Screen.width * 0.075
+    waste.y = waste.y - waste.height - Screen.height * 0.1
     self:insertObject(waste, "hud")
 
     local waste = ShootJoystick(Screen.x + Screen.width, Screen.y + Screen.height, self.mc)
-    waste.x = waste.x - waste.width
-    waste.y = waste.y - waste.height
+    waste.x = waste.x - waste.width - Screen.width * 0.075
+    waste.y = waste.y - waste.height - Screen.height * 0.1
     self:insertObject(waste, "hud")
 
     local waste = ButtonPause(0, 0)

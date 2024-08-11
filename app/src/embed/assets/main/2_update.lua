@@ -1,5 +1,5 @@
 function love.update(dt)
-    DebugStuff = {}
+    DM:update()
     Dt = dt
     SettingsDt["game_dt_since_last_tick"] = SettingsDt["game_dt_since_last_tick"] + dt
     if love.mouse.isDown(1) then
@@ -7,14 +7,13 @@ function love.update(dt)
         local x, y = love.mouse.getPosition()
         love.touchmoved(fakeTouchID, x, y, 0, 0, 1)
     end
-
     if 1 / SettingsDt["game_tick"] < SettingsDt["game_dt_since_last_tick"] then
         HasSomeTimePassedCounter = HasSomeTimePassedCounter + Dt
         if (HasSomeTimePassedCounter > 0.05) then
             HasSomeTimePassedCounter = 0
             HasSomeTimePassed = true
         end
-        table.insert(DebugStuff, "touches: " .. #love.touch.getTouches())
+
         SettingsDt["game_dt_since_last_tick"] = 0
         SettingsDt["do_draw"] = 1
 

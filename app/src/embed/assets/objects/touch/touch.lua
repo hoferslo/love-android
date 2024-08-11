@@ -7,6 +7,7 @@ function BasicTouch:new (x, y, id)
     self.xDraw = self.x
     self.yDraw = self.y
     self.collisionGroups = { "hud" }
+    self:calcScale()
 end
 
 function BasicTouch:update()
