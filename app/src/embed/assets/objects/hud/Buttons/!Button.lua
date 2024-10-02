@@ -10,6 +10,9 @@ end
 function Button:update()
     if self.isBeingPressed == false and self.timeHeld > 0 then
         self.timeHeld = self.timeHeld - 1
+        if self.timeHeld > 30 then
+            self.timeHeld = 30
+        end
     end
     Button.super.update(self)
 end

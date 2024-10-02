@@ -83,17 +83,18 @@ end
 
 function ObjectScrollerY:OnLetGo()
     ObjectScrollerY.super.OnLetGo(self)
-    self.touchOffsetY = 0
+
     self.touchStartY = nil
     self.previousY = 0
     self.currentY = 0
 
     for i, item in ipairs(self.items) do
-        if checkCollision(BasicObject(self.lastTouchX, self.lastTouchY, 1, 1), item) then
+        if  self.touchOffsetY == 0 and checkCollision(BasicObject(self.lastTouchX, self.lastTouchY, 1, 1), item) then
             item.active = true
-                item:OnLetGo()
+            item:OnLetGo()
         end
     end
+    self.touchOffsetY = 0
 end
 
 function ObjectScrollerY:draw(canvas, offsetX, offsetY) --dont question this
