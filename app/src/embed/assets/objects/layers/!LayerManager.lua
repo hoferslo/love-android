@@ -2,8 +2,10 @@ LayerManager = Object:extend()
 
 function LayerManager:new()
     self.layers = {}
+    LevelM = LevelManager()
     self.homeLayer = CampaignSelectionLayer() 
     table.insert(self.layers, self.homeLayer)
+    
 end
 
 

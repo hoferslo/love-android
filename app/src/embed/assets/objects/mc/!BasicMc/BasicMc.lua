@@ -8,20 +8,14 @@ function BasicMc:new (x, y, width, height)
     self.shootCooldown = 0
     self.shootCooldownMax = 10
     self.collection = "players"
-    self.speed = 0.2
-    self.friction = 0.9
+    self.speed = 0.4
+    self.friction = 0.75
 end
 
 function BasicMc:update()
     BasicMc.super.update(self)
     self.shootCooldown = self.shootCooldown - 1
-    if self.shootCooldown <= 0 then
-        for i = 1, 36 do
-            self:shoot(i * 10)
-        end
-
-        self.shootCooldown = self.shootCooldownMax
-    end
+    
 end
 
 function BasicMc:shoot(angle)

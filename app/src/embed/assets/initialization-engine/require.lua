@@ -61,5 +61,6 @@ require "initialization-engine/settings"
 Require_all_lua_files("functions")
 Require_all_lua_files("objects")
 Require_all_lua_files("main")
+Require_all_lua_files("levels")
 
 

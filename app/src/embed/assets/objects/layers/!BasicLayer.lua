@@ -2,8 +2,14 @@ Layer = Object:extend()
 
 function Layer:new()
     self.collections = {
+        particlesBackground = {},
+        objectsBackground = {},
+        tiles = {},
+        enviorment = {},
+        enviormentCollide = {},
+        gores = {},
+        itemsOnGround = {},
         players = {},
-        buttons = {},
         objects = {},
         enemies = {},
         enemyProj = {},
@@ -11,16 +17,10 @@ function Layer:new()
         particles = {},
         storage = {},
         strings = {},
-        gores = {},
-        particlesBackground = {},
-        objectsBackground = {},
         enemiesDead = {},
         hud = {},
         borders = {},
-        tiles = {},
-        enviorment = {},
-        enviormentCollide = {},
-        itemsOnGround = {}
+        buttons = {}
     }
 
     self.mc = nil
@@ -51,7 +51,7 @@ function Layer:update()
     ForLoop(self.collections["tiles"])
     ForLoop(self.collections["buttons"])
     ForLoop(self.collections["enemies"])
-
+    
     for i = #self.collections["playerProj"], 1, -1 do
         if self.collections["playerProj"][i]:update() then
             table.remove(self.collections["playerProj"], i)
@@ -82,13 +82,29 @@ function Layer:update()
     end
 end
 
-function Layer:draw()
+function Layer:draw() --Don't overwrite this function
     -- Draw logic for the layer
-    for _, collection in pairs(self.collections) do
-        for _, obj in pairs(collection) do
-            obj:draw()
-        end
-    end
+    ForDraw(self.collections["particlesBackground"])
+    ForDraw(self.collections["objectsBackground"])
+    ForDraw(self.collections["tiles"])
+    ForDraw(self.collections["enviorment"])
+    ForDraw(self.collections["enviormentCollide"])
+    ForDraw(self.collections["gores"])
+    ForDraw(self.collections["itemsOnGround"])
+    ForDraw(self.collections["players"])
+    ForDraw(self.collections["objects"])
+    ForDraw(self.collections["enemies"])
+    ForDraw(self.collections["enemyProj"])
+    ForDraw(self.collections["playerProj"])
+    ForDraw(self.collections["particles"])
+    ForDraw(self.collections["storage"])
+    ForDraw(self.collections["strings"])
+    ForDraw(self.collections["enemiesDead"])
+    ForDraw(self.collections["hud"])
+    ForDraw(self.collections["borders"])
+    ForDraw(self.collections["buttons"])
+
+    ForDraw(self.collections["playerProj"])
     if self.mc then
         self.mc:draw()
     end

@@ -15,6 +15,7 @@ function love.load()
     HasSomeTimePassedCounter = 0
 
     LM = LayerManager()
+
     for _, layer in ipairs(LM.layers) do
         layer:load()
     end
