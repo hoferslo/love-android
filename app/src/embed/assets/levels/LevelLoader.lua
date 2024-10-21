@@ -34,4 +34,8 @@ function LevelManager:generateLevel(selectedLevel, layer)
             end
         end
     end
+    local XMax = layer.collections["tiles"][#layer.tiles].x + sizeOfTile
+    local YMax = layer.collections["tiles"][#layer.tiles].y + sizeOfTile
+
+    
 end
