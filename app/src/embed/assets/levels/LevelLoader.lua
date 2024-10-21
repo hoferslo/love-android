@@ -37,5 +37,5 @@ function LevelManager:generateLevel(selectedLevel, layer)
     local XMax = layer.collections["tiles"][#layer.tiles].x + sizeOfTile
     local YMax = layer.collections["tiles"][#layer.tiles].y + sizeOfTile
 
-    
+    --add tiles to chunks here
 end
