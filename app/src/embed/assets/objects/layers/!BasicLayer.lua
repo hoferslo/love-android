@@ -5,6 +5,7 @@ function Layer:new()
         particlesBackground = {},
         objectsBackground = {},
         tiles = {},
+        chunks = {},
         enviorment = {},
         enviormentCollide = {},
         gores = {},
@@ -48,7 +49,8 @@ function Layer:load()
 end
 
 function Layer:update()
-    ForLoop(self.collections["tiles"])
+    ForLoop(self.collections["tiles"]) --maybe comment out
+    ForLoop(self.collections["chunks"])
     ForLoop(self.collections["buttons"])
     ForLoop(self.collections["enemies"])
     
@@ -86,7 +88,8 @@ function Layer:draw() --Don't overwrite this function
     -- Draw logic for the layer
     ForDraw(self.collections["particlesBackground"])
     ForDraw(self.collections["objectsBackground"])
-    ForDraw(self.collections["tiles"])
+    ForDraw(self.collections["tiles"]) --maybe comment out
+    ForDraw(self.collections["chunks"])
     ForDraw(self.collections["enviorment"])
     ForDraw(self.collections["enviormentCollide"])
     ForDraw(self.collections["gores"])
