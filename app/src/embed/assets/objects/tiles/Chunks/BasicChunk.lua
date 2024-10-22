@@ -1,7 +1,7 @@
 BasicChunk = BasicObject:extend()
 
-function BasicChunk:new (x, y, image)
-    BasicChunk.super.new(self, x, y, image)
+function BasicChunk:new (x, y, width, height)
+    BasicChunk.super.new(self, x, y, width, height)
     self.collisionGroups = {}
     self.collection = "chunks"
     self.tiles = {}
@@ -13,7 +13,7 @@ function BasicChunk:update()
 end
 
 function BasicChunk:draw()
-    BasicChunk.super.draw(self)
+    --BasicChunk.super.draw(self)
     ForDraw(self.tiles)
 end
 

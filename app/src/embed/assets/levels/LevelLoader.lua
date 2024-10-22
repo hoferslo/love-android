@@ -34,8 +34,28 @@ function LevelManager:generateLevel(selectedLevel, layer)
             end
         end
     end
-    local XMax = layer.collections["tiles"][#layer.tiles].x + sizeOfTile
-    local YMax = layer.collections["tiles"][#layer.tiles].y + sizeOfTile
+    local XMax = layer.collections["tiles"][#layer.collections["tiles"]].x + sizeOfTile
+    local YMax = layer.collections["tiles"][#layer.collections["tiles"]].y + sizeOfTile
 
     --add tiles to chunks here
+    local chunkSize = 8
+
+    for y = 0, math.floor(ImagesData[self.image][selectedLevel]:getHeight() / chunkSize) + 1, 1 do
+        for x = 0, math.floor(ImagesData[self.image][selectedLevel]:getWidth() / chunkSize) + 1, 1 do
+            local chunk = BasicChunk(x * chunkSize * sizeOfTile, y * chunkSize * sizeOfTile, chunkSize * sizeOfTile, chunkSize * sizeOfTile)
+            for index, value in ipairs(layer.collections["tiles"]) do
+                if checkCollision(chunk, layer.collections["tiles"][index]) then
+                    table.insert(chunk.tiles, layer.collections["tiles"][index])
+                    --table.remove(layer.collections["tiles"], index)
+                else
+                    if (layer.collections["tiles"][index].x > chunk.x + chunk.width and layer.collections["tiles"][index].y > chunk.y + chunk.height) then
+                        break
+                    end
+                end
+                
+            end
+            
+            layer:insertObject(chunk)
+        end
+    end
 end
