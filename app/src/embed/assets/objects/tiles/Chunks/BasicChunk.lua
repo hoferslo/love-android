@@ -22,6 +22,8 @@ end
 
 function BasicChunk:hit(object)
     for index, value in ipairs(self.tiles) do
-        value:hit(object)
+        if checkCollision(object, value) then
+            value:hit(object)
+        end
     end
 end
