@@ -9,16 +9,19 @@ end
 
 function BasicChunk:update()
     BasicChunk.super.update(self)
-    ForLoop(self.tiles)
+    if checkCollision(Screen, self) then
+        ForLoop(self.tiles)
+    end
 end
 
 function BasicChunk:draw()
     --BasicChunk.super.draw(self)
     ForDraw(self.tiles)
+    BasicChunk.super.draw(self)
 end
 
-function BasicChunk:effect(object)
+function BasicChunk:hit(object)
     for index, value in ipairs(self.tiles) do
-        value:effect(object)
+        value:hit(object)
     end
 end

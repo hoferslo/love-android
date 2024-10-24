@@ -36,6 +36,26 @@ function ForLoop(something)
 end
 
 
+function ForLoopHit(something, arrayOfTargets)
+    for i = #something, 1, -1 do
+        if something[i]:update() then
+            table.remove(something, i)
+        else
+            for j = #arrayOfTargets, 1, -1 do
+                for c = #arrayOfTargets[j], 1, -1 do
+                    if something[i]:checkCollision(arrayOfTargets[j][c]) then
+                        if something[i]:hit(arrayOfTargets[j][c]) then
+                            table.remove(something, i)
+                            break
+                        end
+                    end
+                end
+            end
+        end
+    end
+end
+
+
 function ForLoopDict(something)
     for key, value in pairs(something) do
         if value:update() then

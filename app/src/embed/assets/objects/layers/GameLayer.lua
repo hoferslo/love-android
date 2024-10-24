@@ -35,9 +35,9 @@ function GameLayer:update()
     GameLayer.super.update(self)
 
     if math.random(1, 120) == 1 then
-        --local enemy = TestEnemy(math.random(Screen.x + Screen.width * 0.1, Screen.x + Screen.width * 0.1 + Screen.width * 0.9), 1)
+        local enemy = TestEnemy(math.random(Screen.x + Screen.width * 0.1, Screen.x + Screen.width * 0.1 + Screen.width * 0.9), 1)
 
-        --self:insertObject(enemy)
+        self:insertObject(enemy)
     end
 end
 

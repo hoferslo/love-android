@@ -50,24 +50,11 @@ end
 
 function Layer:update()
     --ForLoop(self.collections["tiles"]) --maybe comment out
-    ForLoop(self.collections["chunks"])
+    ForLoopHit(self.collections["chunks"], {self.collections["enemies"], {LM:getMC()}})
     ForLoop(self.collections["buttons"])
     ForLoop(self.collections["enemies"])
     
-    for i = #self.collections["playerProj"], 1, -1 do
-        if self.collections["playerProj"][i]:update() then
-            table.remove(self.collections["playerProj"], i)
-        else
-            for c = #self.collections["enemies"], 1, -1 do
-                if self.collections["playerProj"][i]:checkCollision(self.collections["enemies"][c]) then
-                    if self.collections["playerProj"][i]:hit(self.collections["enemies"][c]) then
-                        table.remove(self.collections["playerProj"], i)
-                        break
-                    end
-                end
-            end
-        end
-    end
+    ForLoopHit(self.collections["playerProj"], {self.collections["enemies"]})
 
     ForLoop(self.collections["enemyProj"])
     ForLoop(self.collections["strings"])

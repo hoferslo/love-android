@@ -14,6 +14,7 @@ function BasicTile:draw()
     BasicTile.super.draw(self)
 end
 
-function BasicTile:effect(object)
+function BasicTile:hit(object)
+    print(self.x)
     --do something to object
 end
