@@ -18,8 +18,8 @@ end
 
 function LevelManager:generateLevel(selectedLevel, layer)
 
-    local sizeOfTile = GrassTile(1, 1)
-    sizeOfTile = Images[sizeOfTile.image][sizeOfTile.imageIndex]:getWidth()
+    local sizeOfTile = GrassTile(1, 1).width
+    
     for y = 0, ImagesData[self.image][selectedLevel]:getHeight() - 1 do
         for x = 0, ImagesData[self.image][selectedLevel]:getWidth() - 1 do
             local r, g, b, a = ImagesData[self.image][selectedLevel]:getPixel(x, y) -- Get the color of the pixel
@@ -29,13 +29,14 @@ function LevelManager:generateLevel(selectedLevel, layer)
 
             -- Check if the key does not exist in the dictionary
             if a > 0 then
-
-                layer:insertObject(self.itemDictionary[colorKey](x * sizeOfTile, y * sizeOfTile))
+                if self.itemDictionary[colorKey] ~= nil then
+                    layer:insertObject(self.itemDictionary[colorKey](x * sizeOfTile, y * sizeOfTile))
+                else 
+                    --print("Object is nil in generate level, of colorKey: " .. colorKey)
+                end
             end
         end
     end
-    local XMax = layer.collections["tiles"][#layer.collections["tiles"]].x + sizeOfTile
-    local YMax = layer.collections["tiles"][#layer.collections["tiles"]].y + sizeOfTile
 
     --add tiles to chunks here
     local chunkSize = 8
@@ -54,8 +55,9 @@ function LevelManager:generateLevel(selectedLevel, layer)
                 end
                 
             end
-            
-            layer:insertObject(chunk)
+            if #chunk.tiles ~= 0 then
+                layer:insertObject(chunk)
+            end
         end
     end
 end

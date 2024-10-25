@@ -4,7 +4,7 @@ function BasicTile:new (x, y, image)
     BasicTile.super.new(self, x, y, image)
     self.collisionGroups = {}
     self.collection = "tiles"
-    self.display = true
+    --self.display = true
 end
 
 function BasicTile:update()
@@ -13,12 +13,13 @@ function BasicTile:update()
 end
 
 function BasicTile:draw()
-    if self.display == true then
+    --if self.display == true then
     BasicTile.super.draw(self)
-    end
+    --end
+    --love.graphics.circle("fill", self.x, self.y, 2)
 end
 
 function BasicTile:hit(object)
-    self.display = true
+    --self.display = true
     --do something to object
 end

@@ -17,7 +17,7 @@ end
 function BasicChunk:draw()
     --BasicChunk.super.draw(self)
     ForDraw(self.tiles)
-    BasicChunk.super.draw(self)
+    --BasicChunk.super.draw(self)
 end
 
 function BasicChunk:hit(object)
