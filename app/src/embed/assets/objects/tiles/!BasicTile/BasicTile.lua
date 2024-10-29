@@ -8,7 +8,7 @@ function BasicTile:new (x, y, image)
 end
 
 function BasicTile:update()
-    BasicTile.super.update(self)
+    --BasicTile.super.update(self)
     self.display = false
 end
 

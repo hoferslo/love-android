@@ -12,7 +12,7 @@ function BasicHudImage:new (x, y, image)
 end
 
 function BasicHudImage:update()
-    BasicHudImage.super.update(self)
+    --BasicHudImage.super.update(self)
     self.isBeingPressed = false
     if self.active then
         for _, touch in pairs(Touches) do

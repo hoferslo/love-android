@@ -12,7 +12,7 @@ function BasicHud:new (x, y, width, height)
 end
 
 function BasicHud:update()
-    BasicHud.super.update(self)
+    --BasicHud.super.update(self)
     self.isBeingPressed = false
 
     

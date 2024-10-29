@@ -9,7 +9,6 @@ function love.draw()
 
     LM:draw()
 
-
     -- Draw your content on the canvas
 
     -- Reset the rendering target to the screen

@@ -22,5 +22,13 @@ function BasicProjectile:update()
 end
 
 function BasicProjectile:hit(enemy)
+    
     return enemy:hit(self)
+end
+
+function BasicProjectile:updatePosition()
+    -- Update the object's position based on the current velocity
+    self.x = self.x + self.velocityX
+    self.y = self.y + self.velocityY
+    self:applyFriction()
 end

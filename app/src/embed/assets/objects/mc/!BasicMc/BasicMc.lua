@@ -20,6 +20,6 @@ end
 
 function BasicMc:shoot(angle)
     angle = angle or -90
-    local proj = BasicProjectile(self.x + self.width * 0.5, self.y + self.height * 0.5, 1, 1, angle)
+    local proj = BouncyProjectile(self.x + self.width * 0.5, self.y + self.height * 0.5, 1, 1, angle)
     LM:insertObject(proj, "playerProj")
 end

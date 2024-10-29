@@ -52,13 +52,14 @@ end
 
 function Layer:update()
     --ForLoop(self.collections["tiles"]) --maybe comment out
-    ForLoopHit(self.collections["chunks"], {self.collections["enemies"], {LM:getMC()}})
+    ForLoopOnScreen(self.collections["chunks"])
     ForLoop(self.collections["buttons"])
     ForLoop(self.collections["enemies"])
     
     ForLoopHit(self.collections["playerProj"], {self.collections["enemies"]})
+    ForHitChunks({self.collections["playerProj"], self.collections["enemyProj"]})
 
-    ForLoop(self.collections["enemyProj"])
+    ForLoopHit(self.collections["enemyProj"], {{LM:getMC()}})
     ForLoop(self.collections["strings"])
     ForLoop(self.collections["gores"])
     ForLoop(self.collections["enemiesDead"])

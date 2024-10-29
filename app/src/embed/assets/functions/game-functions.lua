@@ -17,8 +17,7 @@ function followObject(object, ignore)
         if not ignore[name] then
             for _, item in ipairs(collection) do
                 -- Update item coordinates
-                item.x = item.x + diffX
-                item.y = item.y + diffY
+                item:followObject(diffX, diffY)
             end
         end
     end

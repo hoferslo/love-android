@@ -5,7 +5,7 @@ CollisionGroups = {
     "players",
     "enemies",
     "borders",
-    --tiles,
+    --"chunks", --this one has acustom code for collision
     "enviormentCollide",
     "itemsOnGround"
 }
@@ -21,7 +21,7 @@ function BasicObject:new(x, y, width, height, color)
     self.velocityY = 0  -- Velocity on Y-axis
     self.friction = 0.98  -- Friction coefficient to decelerate the object
     self.collisionGroups = nil --{ "borders" } --set value to this variable, if you want custom collision groups
-    self.hasStandardCollision = true  -- If false, the object must override customCollideX and customCollideY
+    self.hasStandardCollision = true  -- If false, the object must override customCollideX and customCollideY --useless???
     self.color = color or { 1, 1, 1, 1 }
 end
 
@@ -78,6 +78,11 @@ function BasicObject:isOutsideBounds()
     return self.x + self.width < -Screen.width or self.x > Screen.width * 2 or self.y + self.height < -Screen.height or self.y > Screen.height * 2
 end
 
+function BasicObject:followObject(diffX, diffY)
+    self.x = self.x + diffX
+    self.y = self.y + diffY
+end
+
 function BasicObject:draw()
     -- Draw the object
     love.graphics.setColor(self.color)
@@ -88,31 +93,48 @@ function BasicObject:handleCollisionX(obstacle)
     -- Handle collision response on X-axis
     if self:checkCollision(obstacle) then
         if self ~= obstacle then
-            if self.x + self.width / 2 < obstacle.x + obstacle.width / 2 then
-                self.x = obstacle.x - self.width
+            if obstacle.hasStandardCollision == true then
+                self:collisionLogicX(obstacle)
             else
-                self.x = obstacle.x + obstacle.width
+                obstacle:customCollideY(self)
             end
-            self.velocityX = self.velocityX * 0.5
-
         end
     end
+end
+
+function BasicObject:collisionLogicX(obstacle)
+    if self.x + self.width / 2 < obstacle.x + obstacle.width / 2 then
+        self.x = obstacle.x - self.width
+    else
+        self.x = obstacle.x + obstacle.width
+    end
+    self.velocityX = self.velocityX * 0.5
 end
 
 function BasicObject:handleCollisionY(obstacle)
     -- Handle collision response on Y-axis
+    
     if self:checkCollision(obstacle) then
         if self ~= obstacle then
-            if self.y + self.height / 2 < obstacle.y + obstacle.height / 2 then
-                self.y = obstacle.y - self.height
+            if obstacle.hasStandardCollision == true then
+                self:collisionLogicY(obstacle)
             else
-                self.y = obstacle.y + obstacle.height
+                obstacle:customCollideY(self)
             end
-            self.velocityY = self.velocityY * 0.5
         end
     end
 end
 
+
+
+function BasicObject:collisionLogicY(obstacle)
+    if self.y + self.height / 2 < obstacle.y + obstacle.height / 2 then
+        self.y = obstacle.y - self.height
+    else
+        self.y = obstacle.y + obstacle.height
+    end
+    self.velocityY = self.velocityY * 0.5
+end
 -- Function to check if two objects have collided
 function BasicObject:checkCollision(obj2)
     return self.x < obj2.x + obj2.width and
@@ -130,6 +152,13 @@ function BasicObject:checkCollisionX()
             self:handleCollisionX(obstacle)
         end
     end
+    for _, chunk in pairs(LM:getCollection("chunks")) do
+        if self:checkCollision(chunk) then
+            for _, tile in pairs(chunk.tiles) do
+                self:handleCollisionX(tile)
+            end
+        end
+    end
 end
 
 function BasicObject:checkCollisionY()
@@ -140,4 +169,24 @@ function BasicObject:checkCollisionY()
             self:handleCollisionY(obstacle)
         end
     end
+    for _, chunk in pairs(LM:getCollection("chunks")) do
+        if self:checkCollision(chunk) then
+            for _, tile in pairs(chunk.tiles) do
+                self:handleCollisionY(tile)
+            end
+        end
+    end
 end
+
+function BasicObject:customCollideX(object)
+
+end
+
+function BasicObject:customCollideY(object)
+    
+end
+
+function BasicObject:hit(obj)
+
+end
+

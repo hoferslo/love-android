@@ -35,6 +35,16 @@ function ForLoop(something)
     end
 end
 
+function ForLoopOnScreen(something)
+    for i=#something,1,-1 do
+        if checkCollision(Screen, something[i]) then
+            if something[i]:update() then
+                table.remove(something, i)
+            end
+        end
+    end
+end
+
 
 function ForLoopHit(something, arrayOfTargets)
     for i = #something, 1, -1 do
@@ -54,6 +64,26 @@ function ForLoopHit(something, arrayOfTargets)
         end
     end
 end
+
+function ForHitChunks(arrayOfTargets)
+    for i = #LM:getCollection("chunks"), 1, -1 do
+        for j = #arrayOfTargets, 1, -1 do
+            for c = #arrayOfTargets[j], 1, -1 do
+                if LM:getCollection("chunks")[i]:checkCollision(arrayOfTargets[j][c]) then
+                    for tileCounter = #LM:getCollection("chunks")[i].tiles, 1, -1 do
+                        if checkCollision(LM:getCollection("chunks")[i].tiles[tileCounter], (arrayOfTargets[j][c])) then
+                            if arrayOfTargets[j][c]:hit(LM:getCollection("chunks")[i].tiles[tileCounter]) then
+                                table.remove(arrayOfTargets[j], c)
+                                break
+                            end
+                        end
+                    end
+                end
+            end
+        end
+    end
+end
+
 
 
 function ForLoopDict(something)
