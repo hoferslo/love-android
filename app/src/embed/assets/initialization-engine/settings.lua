@@ -6,7 +6,7 @@ function Reset_settings()
     SettingsData = {
         --dpi = 3,
         saveSettings = 0, -- Set to 1 if settings were changed
-        vSync = 1,
+        vSync = 0,
         useParticles = 1,
         particlesLimitMax = 10000,
         particlesLimitMin = 100,
@@ -34,7 +34,7 @@ SettingsScale = {
 }
 
 SettingsDt = {
-    game_tick = 125,
+    game_tick = 60,
     game_dt_since_last_tick = 0,
     do_draw = 0
 }
@@ -49,7 +49,7 @@ SettingsDisplay = {
     minheight = 0,
     --highdpi = false,
     --srgb = false,
-    vsync = 1,
+    vsync = 0,
     msaa = 0,
 }
 
