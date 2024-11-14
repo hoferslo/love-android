@@ -1,4 +1,4 @@
-function love.update(dt)
+function love.update(dt) -- the code is set, so that the game always runs at SettingsDt["game_tick"] ticks a second. unless slower of course...
     DM:update()
     Dt = dt
     SettingsDt["game_dt_since_last_tick"] = SettingsDt["game_dt_since_last_tick"] + dt

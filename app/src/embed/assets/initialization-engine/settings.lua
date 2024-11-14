@@ -22,7 +22,7 @@ Reset_settings()
 SettingsCanvas = {
     format = "normal", -- The pixel format of the canvas ("normal" or "hdr")
     msaa = 0, -- The number of antialiasing samples
-    --dpiscale = 3, -- The DPI scale factor of the canvas
+    --dpiscale = 3, -- The DPI scale factor of the canvas   
     --mipmaps = true,     -- Whether to generate mipmaps for the canvas
 }
 

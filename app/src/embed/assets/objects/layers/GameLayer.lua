@@ -10,7 +10,8 @@ function GameLayer:load()
     self:insertObject(BasicMc(1, 1, 10, 10), "players")
     self.mc = self.collections["players"][1]
 
-    self.mc.x, self.mc.y = Screen.x + Screen.width * 0.5 - self.mc.height * 0.5, Screen.y + Screen.height * 0.5
+    local sizeOfTile = GrassTile(1, 1).width
+    self.mc.x, self.mc.y = sizeOfTile * 26, sizeOfTile * 26
 
     local waste = ArrowJoystick(Screen.x, Screen.y + Screen.height, self.mc)
     waste.x = waste.x + Screen.width * 0.075

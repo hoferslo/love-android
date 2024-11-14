@@ -29,6 +29,5 @@ function RecreateScreen()
     Screen.width = Canvas:getWidth()
     Screen.height = Canvas:getHeight()
     followObject(LM:getMC())
-    print("Recreating Screen and Canvas")
 end
 

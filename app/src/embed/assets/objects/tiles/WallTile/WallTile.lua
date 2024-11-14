@@ -1,5 +1,5 @@
 local className = "WallTile"
-ImagesData[className] = { "1.png"}
+ImagesData[className] = { "1.png", "2.png"}
 local path = "objects/tiles/WallTile/images/"
 Get_images(className, path)
 
@@ -7,7 +7,7 @@ WallTile = BasicTile:extend()
 
 function WallTile:new (x, y)
     WallTile.super.new(self, x, y, className)
-    
+    self.imageIndex = math.random(1, #ImagesData[self.image])
 
 end
 
