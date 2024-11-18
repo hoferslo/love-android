@@ -9,12 +9,14 @@ function BasicHud:new (x, y, width, height)
     self.active = true
     self.lastTouchX = 0
     self.lastTouchY = 0
+
+
 end
 
 function BasicHud:update()
     --BasicHud.super.update(self)
-    self.isBeingPressed = false
 
+    self.isBeingPressed = false
     
     if self.active then
         for _, touch in pairs(Touches) do
@@ -27,6 +29,7 @@ function BasicHud:update()
             end
         end
     end
+
 end
 
 function BasicHud:Touch(x, y)

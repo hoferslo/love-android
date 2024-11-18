@@ -101,7 +101,7 @@ function ObjectScrollerX:draw(canvas, offsetX, offsetY) --dont question this
     offsetY = offsetY or 0
     ObjectScrollerX.super.draw(self)
     love.graphics.setCanvas(self.canvas)
-    love.graphics.clear()
+    love.graphics.clear(love.graphics.getBackgroundColor())
     
     for i, item in ipairs(self.items) do --for touches collision
         item.x = item.x - self.x - offsetX

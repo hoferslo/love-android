@@ -26,6 +26,8 @@ end
 function RecreateScreen()
     Canvas = love.graphics.newCanvas(math.floor(love.graphics.getWidth() / SettingsScale["x"]), math.floor(love.graphics.getHeight() / SettingsScale["y"]), SettingsCanvas)
 
+    LightCanvas = love.graphics.newCanvas(Canvas:getWidth(), Canvas:getHeight(), SettingsCanvas)
+
     Screen.width = Canvas:getWidth()
     Screen.height = Canvas:getHeight()
     followObject(LM:getMC())

@@ -21,14 +21,13 @@ function Layer:new()
         enemiesDead = {},
         hud = {},
         borders = {},
-        buttons = {}
+        buttons = {},
+        lights = {}
     }
 
-    self.mc = nil
+    self.lighter = Lighter()
 
-    if LM ~= nil then 
-        self:load()
-    end
+    self.mc = nil
 end
 
 function Layer:insertObject(object, collection) --maybe make automatic insertions, have each object have a string variable, collection, that is the same string as the index in BasicLayer class in collections
@@ -101,4 +100,5 @@ function Layer:draw() --Don't overwrite this function
     if self.mc then
         self.mc:draw()
     end
+
 end

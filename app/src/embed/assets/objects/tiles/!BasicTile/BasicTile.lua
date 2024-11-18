@@ -5,11 +5,13 @@ function BasicTile:new (x, y, image)
     self.collisionGroups = {}
     self.collection = "tiles"
     --self.display = true
+    --self.light = LM:getLighter():addLight(self.x, self.y, 200, 1,1,1)
 end
 
 function BasicTile:update()
     --BasicTile.super.update(self)
     self.display = false
+    --LM:getLighter():updateLight(self.light, self.x, self.y)
 end
 
 function BasicTile:draw()

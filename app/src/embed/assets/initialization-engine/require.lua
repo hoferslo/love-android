@@ -48,8 +48,8 @@ Net = require "initialization-engine/libraries/net"
 Serialize = require "initialization-engine/libraries/ser"
 Serpent = require "initialization-engine/libraries/serpent"
 Object = require "initialization-engine/libraries/classic"
+Lighter = require "initialization-engine/libraries/lighter"
 require "initialization-engine/settings"
-
 
 
 

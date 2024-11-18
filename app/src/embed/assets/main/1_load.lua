@@ -9,6 +9,7 @@ function love.load()
     end
     love.graphics.setBlendMode(SettingsData.blendMode, SettingsData.blendModeAlpha)
     Canvas = love.graphics.newCanvas(love.graphics.getWidth() / SettingsScale["x"], love.graphics.getHeight() / SettingsScale["y"], SettingsCanvas)
+    LightCanvas = love.graphics.newCanvas(Canvas:getWidth(), Canvas:getHeight(), SettingsCanvas)
     Screen = BasicObject(0, 0, Canvas:getWidth(), Canvas:getHeight())
 
     HasSomeTimePassed = false

@@ -6,7 +6,7 @@ function GameLayer:new()
 end
 
 function GameLayer:load()
-    
+    GameLayer.super.load(self)
     self:insertObject(BasicMc(1, 1, 10, 10), "players")
     self.mc = self.collections["players"][1]
 

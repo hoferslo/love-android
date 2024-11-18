@@ -10,16 +10,16 @@ function love.touchmoved(id, x, y, dx, dy, pressure)
         Touches[id].x = x
         Touches[id].y = y
         Touches[id]:calcScale()
+        Touches[id]:update()
     end
 end
 
 function love.touchreleased(id, x, y, dx, dy, pressure)
     -- Remove touch information from the table when a touch is released
-
     if Touches[id].bind ~= nil then
         Touches[id].bind:OnLetGo()
     end
-
+    Touches[id]:OnLetGo()
     Touches[id] = nil
 end
 

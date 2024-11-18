@@ -9,6 +9,7 @@ function BasicHudImage:new (x, y, image)
     self.active = true
     self.lastTouchX = 0
     self.lastTouchY = 0
+
 end
 
 function BasicHudImage:update()

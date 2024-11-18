@@ -10,12 +10,13 @@ function BasicMc:new (x, y, width, height)
     self.collection = "players"
     self.speed = 0.4
     self.friction = 0.75
+    self.light = LM:getLighter():addLight(self.x, self.y, 400, 0,0,1,0.1)
 end
 
 function BasicMc:update()
     BasicMc.super.update(self)
     self.shootCooldown = self.shootCooldown - 1
-    
+    LM:getLighter():updateLight(self.light, self.x , self.y)
 end
 
 function BasicMc:shoot(angle)

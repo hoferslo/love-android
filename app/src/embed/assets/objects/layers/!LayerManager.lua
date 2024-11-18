@@ -12,6 +12,7 @@ end
 
 function LayerManager:addLayer(layer)
     table.insert(self.layers, layer)
+    self.layers[#self.layers]:load()
 end
 
 function LayerManager:removeLayer()
@@ -50,6 +51,9 @@ function LayerManager:getCollections()
     return self.layers[#self.layers].collections
 end
 
+function LayerManager:getLighter()
+    return self.layers[#self.layers].lighter
+end
 
 function LayerManager:draw()
     if #self.layers > 0 then
