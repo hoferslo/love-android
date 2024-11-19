@@ -19,7 +19,7 @@ function love.touchreleased(id, x, y, dx, dy, pressure)
     if Touches[id].bind ~= nil then
         Touches[id].bind:OnLetGo()
     end
-    Touches[id]:OnLetGo()
+    Touches[id]:onDestroy()
     Touches[id] = nil
 end
 

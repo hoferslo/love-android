@@ -30,6 +30,7 @@ end
 function ForLoop(something)
     for i=#something,1,-1 do
         if something[i]:update() then
+            something[i]:onDestroy()
             table.remove(something, i)
         end
     end
@@ -39,6 +40,7 @@ function ForLoopOnScreen(something)
     for i=#something,1,-1 do
         if checkCollision(Screen, something[i]) then
             if something[i]:update() then
+                something[i]:onDestroy()
                 table.remove(something, i)
             end
         end
@@ -49,12 +51,14 @@ end
 function ForLoopHit(something, arrayOfTargets)
     for i = #something, 1, -1 do
         if something[i]:update() then
+            something[i]:onDestroy()
             table.remove(something, i)
         else
             for j = #arrayOfTargets, 1, -1 do
                 for c = #arrayOfTargets[j], 1, -1 do
                     if something[i]:checkCollision(arrayOfTargets[j][c]) then
                         if something[i]:hit(arrayOfTargets[j][c]) then
+                            something[i]:onDestroy(i)
                             table.remove(something, i)
                             break
                         end
@@ -73,6 +77,7 @@ function ForHitChunks(arrayOfTargets)
                     for tileCounter = #LM:getCollection("chunks")[i].tiles, 1, -1 do
                         if checkCollision(LM:getCollection("chunks")[i].tiles[tileCounter], (arrayOfTargets[j][c])) then
                             if arrayOfTargets[j][c]:hit(LM:getCollection("chunks")[i].tiles[tileCounter]) then
+                                arrayOfTargets[j][c]:onDestroy()
                                 table.remove(arrayOfTargets[j], c)
                                 break
                             end
@@ -89,6 +94,7 @@ end
 function ForLoopDict(something)
     for key, value in pairs(something) do
         if value:update() then
+            value:onDestroy()
             table.remove(something, key)
         end
     end

@@ -10,29 +10,13 @@ function BasicMc:new (x, y, width, height)
     self.collection = "players"
     self.speed = 0.4
     self.friction = 0.75
-    self.lightWidthMax = 900
-    self.lightWidthMin = 100
-    self.lightWidth = 300
-    self.lightDir = 1
-    self.light = LM:getLighter():addLight(self.x, self.y, self.lightWidth, 0.5,1,0.1,0.5)
+    self.light = BasicLight(self.x, self.y, 300, {0.5,1,0.1,0.5})
+    self.light:follow(self)
 end
 
 function BasicMc:update()
     BasicMc.super.update(self)
     self.shootCooldown = self.shootCooldown - 1
-    --[[if self.lightDir == 1 then 
-        self.lightWidth = self.lightWidth +10
-        if self.lightWidth > self.lightWidthMax then
-            self.lightDir = 0
-        end
-    else   
-        self.lightWidth = self.lightWidth -10
-        if self.lightWidth < self.lightWidthMin then
-            self.lightDir = 1
-        end
-    end]]--
-    print(self.lightWidth)
-    LM:getLighter():updateLight(self.light, self.x + self.width * 0.5 , self.y + self.height * 0.5, self.lightWidth)
 end
 
 function BasicMc:shoot(angle)

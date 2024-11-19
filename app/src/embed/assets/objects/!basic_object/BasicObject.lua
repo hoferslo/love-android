@@ -15,11 +15,11 @@ function BasicObject:new(x, y, width, height, color)
     self.y = y
     self.width = width
     self.height = height
-    self.speed = 0.02
+    self.speed = 0.2
     self.angle = 0  -- Movement angle in degrees
     self.velocityX = 0  -- Velocity on X-axis
     self.velocityY = 0  -- Velocity on Y-axis
-    self.friction = 0.98  -- Friction coefficient to decelerate the object
+    self.friction = 0.75  -- Friction coefficient to decelerate the object
     self.collisionGroups = nil --{ "borders" } --set value to this variable, if you want custom collision groups
     self.hasStandardCollision = true  -- If false, the object must override customCollideX and customCollideY --useless???
     self.color = color or { 1, 1, 1, 1 }
@@ -55,6 +55,12 @@ function BasicObject:update()
     -- Called every frame to update the object's state
     self:updatePosition()
 
+end
+
+function BasicObject:onDestroy()
+    if self.light ~= nil then
+        self.light:onDestroy()
+    end
 end
 
 function BasicObject:center()
@@ -146,29 +152,32 @@ end
 -- General Collision Check Functions
 function BasicObject:checkCollisionX()
     -- Check and handle collisions on the X-axis
-    local collisionGroups = self.collisionGroups or CollisionGroups
-    for _, group in pairs(collisionGroups) do
+    local cg = self.collisionGroups or CollisionGroups
+    for _, group in pairs(cg) do
         for _, obstacle in pairs(LM:getCollection(group)) do
             self:handleCollisionX(obstacle)
         end
     end
-    for _, chunk in pairs(LM:getCollection("chunks")) do
+
+    for _, chunk in pairs(LM:getCollection("chunks")) do --for the object to not have collision with chunks, use a custom checkCollisionX (does it exist?), you can even just override checkCollisionX
         if self:checkCollision(chunk) then
             for _, tile in pairs(chunk.tiles) do
                 self:handleCollisionX(tile)
             end
         end
     end
+
 end
 
 function BasicObject:checkCollisionY()
     -- Check and handle collisions on the Y-axis
-    local collisionGroups = self.collisionGroups or CollisionGroups
-    for _, group in pairs(collisionGroups) do
+    local cg = self.collisionGroups or CollisionGroups
+    for _, group in pairs(cg) do
         for _, obstacle in pairs(LM:getCollection(group)) do
             self:handleCollisionY(obstacle)
         end
     end
+
     for _, chunk in pairs(LM:getCollection("chunks")) do
         if self:checkCollision(chunk) then
             for _, tile in pairs(chunk.tiles) do
@@ -176,6 +185,7 @@ function BasicObject:checkCollisionY()
             end
         end
     end
+
 end
 
 function BasicObject:customCollideX(object)

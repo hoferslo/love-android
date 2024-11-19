@@ -392,6 +392,16 @@ local Lighter = Class{
       love.graphics.setColor(1,1,1,1)
       love.graphics.setStencilTest()
     end
+  end,
+  drawLight = function(self, light)
+    love.graphics.stencil(self.stencilFunctions[light], "replace", 1)
+    love.graphics.setStencilTest("greater", 0)
+    local w, h = light.gradientImage:getDimensions()
+    local scale = light.radius / w
+    love.graphics.setColor(light.r, light.g, light.b, light.a)
+    love.graphics.draw(light.gradientImage, light.x, light.y, 0, scale, scale, w/2, h/2)
+    love.graphics.setColor(1,1,1,1)
+    love.graphics.setStencilTest()
   end
 }
 

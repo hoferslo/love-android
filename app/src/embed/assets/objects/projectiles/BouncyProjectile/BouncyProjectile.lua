@@ -5,6 +5,8 @@ function BouncyProjectile:new (x, y, width, height, angle, speed, friction)
     BouncyProjectile.super.new(self, x, y, width, height, angle, speed, friction)
     self.numOfBouncesLeft = 20
     self.lifeTime = 5 * SettingsDt["game_tick"]
+    self.light = BasicLight(self.x, self.y, math.random(20,60), {math.random(0,100)*0.01,math.random(0,100)*0.01,math.random(0,100)*0.01,math.random(30,70)*0.01})
+    self.light:follow(self)
 end
 
 

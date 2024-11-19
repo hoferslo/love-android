@@ -26,6 +26,6 @@ function ShootJoystick:Touch(x, y)
     self.controlledObject:shoot(self.angleToTouch)
 end
 
-function BasicJoystick:OnLetGo()
+function ShootJoystick:OnLetGo()
 
 end
