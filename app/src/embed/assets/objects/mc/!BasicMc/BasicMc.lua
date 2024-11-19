@@ -16,7 +16,7 @@ end
 function BasicMc:update()
     BasicMc.super.update(self)
     self.shootCooldown = self.shootCooldown - 1
-    LM:getLighter():updateLight(self.light, self.x , self.y)
+    LM:getLighter():updateLight(self.light, self.x + self.width * 0.5 , self.y + self.height * 0.5)
 end
 
 function BasicMc:shoot(angle)

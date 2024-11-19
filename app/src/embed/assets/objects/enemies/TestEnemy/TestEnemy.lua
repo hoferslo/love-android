@@ -9,7 +9,7 @@ end
 
 
 function TestEnemy:update()
-    LM:getLighter():updateLight(self.light, self.x , self.y)
+    LM:getLighter():updateLight(self.light, self.x + self.width * 0.5 , self.y + self.height * 0.5)
     return TestEnemy.super.update(self)
 end
 
