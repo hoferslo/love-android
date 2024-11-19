@@ -1,7 +1,8 @@
 function love.load()
     DM = DebugManager()
     SettingsInfo["OS"] = love.system.getOS()
-
+    shader = love.graphics.newShader("initialization-engine/libraries/customBlendMode.glsl")
+    shader:send("blendFactor", {0.5, 0.5, 0.5, 0.5})
     if SettingsInfo["OS"] == "Windows" then
         love.window.updateMode(0, 0, { fullscreen = false, vsync = SettingsDisplay["vsync"] })
     else

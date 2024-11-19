@@ -8,16 +8,19 @@ function love.draw()
     love.graphics.clear()
 
     LM:draw()
-    
+    love.graphics.setShader(shader)
     love.graphics.setCanvas({ LightCanvas, stencil = true})
     love.graphics.clear(0,0,0, 0)
+    love.graphics.setShader(shader)
     LM:getLighter():drawLights()
     -- Draw your content on the canvas
+
     love.graphics.setCanvas(Canvas)
     --love.graphics.setBlendMode(SettingsData.blendMode, SettingsData.blendModeAlpha)
-    love.graphics.setBlendMode("add", "alphamultiply")
-    
+    --love.graphics.setBlendMode("add", "alphamultiply")
+    love.graphics.setShader()
     love.graphics.draw(LightCanvas)
+    
 
     love.graphics.setBlendMode(SettingsData.blendMode, SettingsData.blendModeAlpha)
 

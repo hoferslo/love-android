@@ -10,7 +10,7 @@ function BasicMc:new (x, y, width, height)
     self.collection = "players"
     self.speed = 0.4
     self.friction = 0.75
-    self.light = LM:getLighter():addLight(self.x, self.y, 400, 0,0,1,0.1)
+    self.light = LM:getLighter():addLight(self.x, self.y, 400, 0.5,0.5,0.1,0.5)
 end
 
 function BasicMc:update()
