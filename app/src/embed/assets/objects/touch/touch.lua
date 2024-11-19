@@ -8,7 +8,7 @@ function BasicTouch:new (x, y, id)
     self.yDraw = self.y
     self.collisionGroups = { "hud" }
     self:calcScale()
-    self.light = LM:getLighter():addLight(self.x, self.y, 100, 0.1,0,0.1, 1)
+    self.light = LM:getLighter():addLight(self.x, self.y, 200, 1,0,1, 1)
 end
 
 function BasicTouch:update()
