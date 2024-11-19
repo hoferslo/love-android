@@ -96,7 +96,6 @@ function Layer:draw() --Don't overwrite this function
     end
     love.graphics.setCanvas({ Canvas, stencil = true})
     love.graphics.setBlendMode("add", "alphamultiply")
-    print(#self.collections["lights"])
     ForDraw(self.collections["lights"])
     love.graphics.setCanvas(Canvas)
     love.graphics.setBlendMode(SettingsData.blendMode, SettingsData.blendModeAlpha)
