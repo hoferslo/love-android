@@ -94,10 +94,9 @@ function Layer:draw() --Don't overwrite this function
     if self.mc then
         self.mc:draw()
     end
-    love.graphics.setCanvas({ Canvas, stencil = true})
+    --love.graphics.setCanvas({ Canvas, stencil = true})
     love.graphics.setBlendMode("add", "alphamultiply")
     ForDraw(self.collections["lights"])
-    love.graphics.setCanvas(Canvas)
     love.graphics.setBlendMode(SettingsData.blendMode, SettingsData.blendModeAlpha)
     ForDraw(self.collections["storage"])
     ForDraw(self.collections["strings"])

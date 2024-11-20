@@ -10,7 +10,7 @@ function BasicMc:new (x, y, width, height)
     self.collection = "players"
     self.speed = 0.4
     self.friction = 0.75
-    self.light = BasicLight(self.x, self.y, 300, {0.5,1,0.1,0.5})
+    self.light = BasicLight(self.x, self.y, 0.3, {0.5,1,0.1,0.5})
     self.light:follow(self)
 end
 

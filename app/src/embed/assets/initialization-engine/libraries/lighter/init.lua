@@ -28,7 +28,7 @@ local shash = require(PATH .. '.libs.shash')
 
 local MEDIAPATH = PATH:gsub("%.", "/")
 
-local defaultGradientImage = love.graphics.newImage(MEDIAPATH .. '/media/default_light.png')--'/media/textures_of_light/512x512/512x512 textures (40).png')
+defaultGradientImage = love.graphics.newImage(MEDIAPATH .. '/media/default_light.png')--'/media/textures_of_light/512x512/512x512 textures (40).png')
 
 -- This is a local array that will be used in calculateVisibilityPolygon
 local _angles = {}
