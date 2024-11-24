@@ -7,15 +7,12 @@ ShootJoystick = BasicJoystick:extend()
 
 function ShootJoystick:new (x, y, controlledObject)
     ShootJoystick.super.new(self, x, y, className)
-    self.widthTouch = Images[self.image][2]:getWidth() * SettingsScale["x"]
-    self.heightTouch = Images[self.image][2]:getHeight() * SettingsScale["y"]
     self.xTouch = 0
     self.yTouch = 0
     self.controlledObject = controlledObject
 end
 
 function ShootJoystick:update()
-    self:ResetJoystick()
     ShootJoystick.super.update(self)
 
 end

@@ -8,12 +8,13 @@ function BasicTouch:new (x, y, id)
     self.yDraw = self.y
     self.collisionGroups = { "hud" }
     self:calcScale()
-    self.light = BasicLight(self.x, self.y, 0.2, {math.random(0,100)*0.01,math.random(0,100)*0.01,math.random(0,100)*0.01, 0.75})
+    self.light = BasicLight(self.x, self.y, 0.3, {math.random(0,100)*0.01,math.random(0,100)*0.01,math.random(0,100)*0.01, 0.75})
+    self.light:follow(self)
+    LM:insertObject(self.light)
 end
 
 function BasicTouch:update()
-    self.light.x = self.x
-    self.light.y = self.y
+    
 end
 
 function BasicTouch:calcScale()

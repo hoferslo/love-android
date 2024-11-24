@@ -2,6 +2,8 @@ BasicHud = BasicObject:extend()
 
 function BasicHud:new (x, y, width, height)
     BasicHud.super.new(self, x, y, width, height)
+    self.width = width
+    self.height = height
     self.angleToTouch = 0
     self.collisionGroups = { }
     self.collection = "hud"

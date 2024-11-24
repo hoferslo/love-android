@@ -38,19 +38,24 @@ function LevelManager:generateLevel(selectedLevel, layer)
             end
         end
     end
-
-    --add tiles to chunks here
+    
     local chunkSize = 8
 
-    for y = 0, math.floor(ImagesData[self.image][selectedLevel]:getHeight() / chunkSize) + 1, 1 do
-        for x = 0, math.floor(ImagesData[self.image][selectedLevel]:getWidth() / chunkSize) + 1, 1 do
+    local height = math.floor(ImagesData[self.image][selectedLevel]:getHeight() / chunkSize) + 1
+    local width = math.floor(ImagesData[self.image][selectedLevel]:getHeight() / chunkSize) + 1
+    local debugCounter = 0
+    local countOfTiles = #tiles
+
+    for y = height, 0, -1 do
+        for x = width, 0, -1 do
             local chunk = BasicChunk(x * chunkSize * sizeOfTile, y * chunkSize * sizeOfTile, chunkSize * sizeOfTile, chunkSize * sizeOfTile)
-            for index, value in ipairs(tiles) do
-                if checkCollision(chunk, tiles[index]) then
-                    table.insert(chunk.tiles, tiles[index])
-                    --table.remove(layer.collections["tiles"], index)
+            for i=#tiles,1,-1 do
+                if checkCollision(chunk, tiles[i]) then
+                    table.insert(chunk.tiles, tiles[i])
+                    table.remove(tiles, i)
+                    debugCounter = debugCounter + 1
                 else
-                    if (tiles[index].x > chunk.x + chunk.width and tiles[index].y > chunk.y + chunk.height) then
+                    if (tiles[i].x + tiles[i].width < chunk.x and tiles[i].y + tiles[i].height < chunk.y) then
                         break
                     end
                 end

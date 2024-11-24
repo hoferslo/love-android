@@ -13,9 +13,9 @@ CollisionGroups = {
 function BasicObject:new(x, y, width, height, color)
     self.x = x
     self.y = y
-    self.width = width
-    self.height = height
-    self.speed = 0.2
+    self.width = width * SettingsScale["x_images"]
+    self.height = height * SettingsScale["y_images"]
+    self.speed = 0.2 * SettingsScale["y_images"]
     self.angle = 0  -- Movement angle in degrees
     self.velocityX = 0  -- Velocity on X-axis
     self.velocityY = 0  -- Velocity on Y-axis

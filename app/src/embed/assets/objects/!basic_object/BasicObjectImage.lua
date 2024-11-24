@@ -5,10 +5,10 @@ Get_images(className, path)
 
 BasicObjectImage = BasicObject:extend()
 
-function BasicObjectImage:new (x, y, image)
+function BasicObjectImage:new (x, y, image, color)
     self.image = image or className
     self.imageIndex = 1
-    BasicObjectImage.super.new(self, x, y, Images[self.image][self.imageIndex]:getWidth() * SettingsScale["x_images"], Images[self.image][self.imageIndex]:getHeight() * SettingsScale["y_images"])
+    BasicObjectImage.super.new(self, x, y, Images[self.image][self.imageIndex]:getWidth(), Images[self.image][self.imageIndex]:getHeight(), color)
     self.color = { 1, 1, 1, 1 }
     self.image_silhouette = self.image .. "_silhouette"
     self.widthHalf = self.width * 0.5

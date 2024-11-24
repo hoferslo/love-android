@@ -27,8 +27,8 @@ SettingsCanvas = {
 }
 
 SettingsScale = {
-    x = 2, --number for scaling the canvas, higher the number less pixels will the canvas have
-    y = 2,
+    x = 1, --number for scaling the canvas, higher the number less pixels will the canvas have
+    y = 1,
     x_images = 2, -- number for scaling the images, higher the number, bigger the images
     y_images = 2,
 }

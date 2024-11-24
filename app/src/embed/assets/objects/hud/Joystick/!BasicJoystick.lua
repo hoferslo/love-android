@@ -7,8 +7,8 @@ BasicJoystick=BasicHudImage:extend()
 
 function BasicJoystick:new (x, y, controlledObject)
     BasicJoystick.super.new(self, x, y, className)
-    self.widthTouch = Images[self.image][2]:getWidth()*SettingsScale["x"]
-    self.heightTouch = Images[self.image][2]:getHeight()*SettingsScale["y"]
+    self.widthTouch = Images[self.image][2]:getWidth()*SettingsScale["x"] * SettingsScale["x_images"]
+    self.heightTouch = Images[self.image][2]:getHeight()*SettingsScale["y"] * SettingsScale["y_images"]
     self.xTouch = 0
     self.yTouch = 0
     self.controlledObject = controlledObject

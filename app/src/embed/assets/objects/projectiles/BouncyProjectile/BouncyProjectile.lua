@@ -1,12 +1,18 @@
+local className = "BouncyProjectile"
+ImagesData[className] = { "1.png"}
+local path = "objects/projectiles/BouncyProjectile/images/"
+Get_images(className, path)
+
 
 BouncyProjectile=BasicProjectile:extend()
 -- doont use yet, not finished
-function BouncyProjectile:new (x, y, width, height, angle, speed, friction)
-    BouncyProjectile.super.new(self, x, y, width, height, angle, speed, friction)
+function BouncyProjectile:new (x, y, angle, speed, friction)
+    BouncyProjectile.super.new(self, x, y, angle, speed, friction)--, className) --make a custom image for this proj
     self.numOfBouncesLeft = 20
     self.lifeTime = 5 * SettingsDt["game_tick"]
     self.light = BasicLight(self.x, self.y, math.random(20,60)*0.001, {math.random(0,100)*0.01,math.random(0,100)*0.01,math.random(0,100)*0.01,math.random(30,70)*0.01})
     self.light:follow(self)
+    LM:insertObject(self.light)
 end
 
 
@@ -15,6 +21,11 @@ function BouncyProjectile:update()
     self.lifeTime = self.lifeTime - 1
     if self.lifeTime < 0 then
         --return true
+    end
+    if math.random(1, 10) == 1 then
+        local light = RadiusLight(self.x, self.y, self.light.radius * 0.75, nil, {self.light.color[1],self.light.color[2],self.light.color[3],self.light.color[4]}, self.angle + math.random(0,20)-10)
+        light.speed = self.speed * 0.5
+        LM:insertObject(light)
     end
 end
 

@@ -21,6 +21,7 @@ function CampaignSelectionLayer:load()
     end
 
     self:insertObject(ObjectScrollerX(Screen.width * 0.1, Screen.height * 0.1, Screen.width * 0.8, Screen.height * 0.8, campaigns))
+    self:insertObject(ButtonPlay(50 ,25 + math.random(0, 50)))
 end
 
 function CampaignSelectionLayer:update()
