@@ -6,12 +6,12 @@ Get_images(className, path)
 BasicLight = BasicObjectImage:extend()
 
 
-function BasicLight:new (x, y, radius, color, angle, speed, friction, image) --figure out how to automatically remove lights without using external removeLight
+function BasicLight:new (x, y, radius, color, angle, speed, friction, image)
     className = image or className
     self.radius = radius or 0.2
     BasicLight.super.new(self, x, y, className, color)
     self.color = color or {1,1,1,0.5}
-    self.angle = angle or 0
+    self.angle = angle or math.random(0, 360)
     self.speed = speed or 2
     self.friction = friction or 1
     self.collisionGroups = {}
@@ -27,7 +27,6 @@ function BasicLight:update()
     if self.followingThisObject ~= nil then
         self:follow(self.followingThisObject)
     end
-    --LM:getLighter():updateLight(self.light, self.x , self.y, self.radius, self.color[1], self.color[2], self.color[3], self.color[4])
 end
 
 function BasicLight:draw()

@@ -39,6 +39,9 @@ function Get_images(name, path)
     end
 end
 
+if not table.unpack then
+    table.unpack = unpack -- For Lua 5.1 and 5.2 compatibility
+end
 
 require "math"
 require "GLOBALS"

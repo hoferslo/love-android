@@ -54,5 +54,7 @@ SettingsDisplay = {
 }
 
 SettingsInfo = {
-    FPS = 0
+    FPS = 0,
+    showFps = true,
+    debug = true
 }

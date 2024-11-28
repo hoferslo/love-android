@@ -18,6 +18,8 @@ function love.load()
     HasSomeTimePassed = false
     HasSomeTimePassedCounter = 0
 
+    love.graphics.setBackgroundColor(25 / 255, 60 / 255, 62 / 255)
+
     LM = LayerManager()
 
     for _, layer in ipairs(LM.layers) do

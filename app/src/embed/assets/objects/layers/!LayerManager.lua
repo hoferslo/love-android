@@ -3,7 +3,7 @@ LayerManager = Object:extend()
 function LayerManager:new()
     self.layers = {}
     LevelM = LevelManager()
-    self.homeLayer = CampaignSelectionLayer() 
+    self.homeLayer = SettingsLayer() 
     table.insert(self.layers, self.homeLayer)
     
 end

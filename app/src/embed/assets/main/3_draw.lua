@@ -33,14 +33,15 @@ function love.draw()
         HasSomeTimePassed = false
     end
 
-    love.graphics.setColor(0, 0, 0, 1)
-    love.graphics.rectangle("line", 0, 0, love.graphics.getWidth(), love.graphics.getHeight())
     love.graphics.setColor(1, 1, 1, 1)
     --love.graphics.print(#LM:getCollection("playerProj"), love.graphics.getWidth() - 100, 20)
     love.graphics.setBlendMode(SettingsData.blendMode)
-    love.graphics.print(string.format("%.2f", SettingsInfo["FPS"]), love.graphics.getWidth() - 50, 5)
-
-    DM:draw()
+    if SettingsInfo["showFps"] then
+        love.graphics.print(string.format("%.2f", SettingsInfo["FPS"]), love.graphics.getWidth() - 50, 5)
+    end
+    if SettingsInfo["debug"] then
+        DM:draw()
+    end
     
     love.graphics.setBlendMode(SettingsData.blendMode, SettingsData.blendModeAlpha)
 end
